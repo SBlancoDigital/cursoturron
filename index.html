@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Curso de turrón · Silvia Blanco</title>
 <meta name="description" content="Recetas del curso de turrón artesano, paso a paso y con todos los detalles.">
 <meta name="theme-color" content="#1d3a2e">
@@ -15,13 +15,13 @@
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;-webkit-tap-highlight-color:transparent;overflow-wrap:break-word}
 main{flex:1}
 a{color:var(--green)}
 a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 h1:focus{outline:none}
-.wrap{max-width:980px;margin:0 auto;padding:0 1.25rem}
+.wrap{max-width:980px;margin:0 auto;padding:0 max(1.25rem,env(safe-area-inset-left)) 0 max(1.25rem,env(safe-area-inset-right))}
 .narrow{max-width:760px}
 .center{text-align:center}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -126,7 +126,37 @@ footer{background:var(--green);color:#e9e2d0;text-align:center;padding:1.2rem 1r
 footer .orn{margin:.4rem auto 1rem}
 footer a{color:#e9e2d0}
 
-@media(max-width:520px){body{font-size:16px}.hero{padding-top:3.2rem}}
+@media(max-width:520px){
+  body{font-size:16px;line-height:1.6}
+  .top-in{padding-top:.5rem;padding-bottom:.5rem}
+  .brand,.top nav a{display:inline-flex;align-items:center;min-height:44px}
+  .brand{font-size:.72rem;letter-spacing:.2em}
+  .top nav a{font-size:1rem}
+  .hero{padding:2.6rem 0 1.4rem}
+  .sub{font-size:1.12rem}
+  .cards{gap:.8rem;margin-bottom:3rem}
+  .card{padding:1.2rem 1.2rem 1.1rem}
+  a.card:active{border-color:var(--gold);background:#fffdf8}
+  .back{display:inline-flex;align-items:center;min-height:44px;margin-top:.6rem;font-size:1rem}
+  .r-head{padding-top:.8rem}
+  .lead{font-size:1.1rem}
+  .print{min-height:44px;padding:0 .4rem;font-size:.95rem}
+  .recipe section{margin-top:2.6rem}
+  .recipe h2{font-size:1.65rem;margin-bottom:1.2rem}
+  .ing li{font-size:1rem;padding:.4rem 0}
+  .ing .q{white-space:normal;text-align:right;width:max-content;max-width:58%;flex:none}
+  .steps li{grid-template-columns:1.9rem 1fr;gap:.5rem;padding:1.05rem 0}
+  .steps li::before{font-size:1.6rem}
+  .stack{max-width:100%}
+  .aside{padding:1rem}
+  .pending{padding:.1rem 1rem}
+  .pending summary{min-height:44px;display:flex;align-items:center}
+  .pager{flex-direction:column;align-items:stretch;gap:0;text-align:center}
+  .pager a{display:block;padding:.85rem 0}
+  footer{padding-bottom:calc(1.8rem + env(safe-area-inset-bottom))}
+}
+@media(max-width:340px){.hero h1,.r-head h1{font-size:2.05rem}.ing .q{max-width:60%}}
+@media(hover:none){a.card:hover{box-shadow:none}}
 @media(prefers-reduced-motion:reduce){.snow{display:none}html{scroll-behavior:auto}}
 @media print{
   .top,.snow,.pager,.print,.back,footer,.pending{display:none}
@@ -308,7 +338,7 @@ function recipeView(r) {
     '<a class="back" href="#/">← Todas las recetas</a>' +
     '<header class="r-head"><p class="kicker">Receta ' + r.num + '</p><h1 tabindex="-1">' + esc(r.title) + '</h1>' +
     '<p class="lead">' + esc(r.lead) + '</p>' + ORN +
-    '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' +
+    (r.meta && r.meta.length ? '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' : '') +
     '<button class="print" type="button" data-print>Imprimir receta</button></header>' +
     '<section><h2>Ingredientes</h2>' + r.ingredients.map(ingredientBlock).join('') + '</section>' +
     '<section><h2>Preparación del mazapán base</h2>' + steps(r.prep) + '</section>' +
