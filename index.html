@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Curso de turrón · Silvia Blanco</title>
+<meta name="description" content="Recetas del curso de turrón artesano, paso a paso y con todos los detalles.">
+<meta name="theme-color" content="#1d3a2e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3l1.9 7.1L21 12l-7.1 1.9L12 21l-1.9-7.1L3 12l7.1-1.9z' fill='%231d3a2e'/%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#fbf8f2; --card:#ffffff; --ink:#27302b; --muted:#6a6f66;
+  --green:#1d3a2e; --gold:#b39358; --gold-ink:#7a5f2c; --line:#e7e0d1;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+main{flex:1}
+a{color:var(--green)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1:focus{outline:none}
+.wrap{max-width:980px;margin:0 auto;padding:0 1.25rem}
+.narrow{max-width:760px}
+.center{text-align:center}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:0;background:var(--green);color:#fff;padding:.5rem 1rem;z-index:10}
+.skip:focus{left:0}
+
+/* cabecera */
+.top{border-top:4px solid var(--green);background:var(--paper);border-bottom:1px solid var(--line)}
+.top-in{display:flex;justify-content:space-between;align-items:center;padding-top:.85rem;padding-bottom:.85rem}
+.brand{font:600 .78rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--green);text-decoration:none}
+.top nav a{font:italic 1.05rem var(--serif);color:var(--gold-ink);text-decoration:none}
+
+/* adorno */
+.orn{display:flex;align-items:center;gap:.8rem;max-width:200px;margin:1.4rem auto;color:var(--gold)}
+.orn span{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn span:last-child{background:linear-gradient(270deg,transparent,var(--gold))}
+
+/* portada */
+.hero{position:relative;overflow:hidden;padding:4.5rem 0 2.2rem;text-align:center}
+.snow{position:absolute;inset:0;pointer-events:none}
+.snow i{position:absolute;top:-8px;border-radius:50%;background:var(--gold);opacity:0;animation:fall linear infinite}
+@keyframes fall{0%{transform:translate3d(0,0,0);opacity:0}12%{opacity:.5}88%{opacity:.35}100%{transform:translate3d(var(--dx,0),380px,0);opacity:0}}
+.kicker{margin:0 0 .6rem;font:600 .74rem var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold-ink)}
+.hero h1,.r-head h1{margin:0;font:400 clamp(2.3rem,6.5vw,3.6rem)/1.1 var(--serif);color:var(--green);letter-spacing:.005em}
+.sub{margin:1rem auto 0;max-width:30em;font:italic 1.25rem/1.5 var(--serif);color:#44504a}
+
+/* índice */
+.cards{list-style:none;margin:1rem 0 4.5rem;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{display:block;height:100%;padding:1.4rem 1.5rem 1.3rem;background:var(--card);border:1px solid var(--line);border-radius:3px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s}
+a.card:hover{border-color:var(--gold);box-shadow:0 8px 26px -16px rgba(29,58,46,.4)}
+.card .num{font:italic 1.3rem var(--serif);color:var(--gold)}
+.card h3{margin:.2rem 0 .45rem;font:400 1.4rem/1.25 var(--serif);color:var(--green)}
+.card p{margin:0 0 .9rem;color:var(--muted);font-size:.95rem}
+.tag{font:600 .72rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+.card.soon{background:transparent;border-style:dashed}
+.card.soon h3,.card.soon .tag{color:var(--muted)}
+
+/* receta */
+.recipe{padding-bottom:3.5rem}
+.back{display:inline-block;margin-top:1.6rem;font-size:.92rem;color:var(--gold-ink);text-decoration:none}
+.back:hover{text-decoration:underline}
+.r-head{text-align:center;padding:1.6rem 0 .6rem}
+.lead{margin:1.1rem auto 0;max-width:34em;font:italic 1.2rem/1.55 var(--serif);color:#44504a}
+.meta{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:0 0 1rem;padding:0}
+.meta li{border:1px solid var(--line);border-radius:999px;padding:.3rem .95rem;font-size:.85rem;color:var(--muted);background:#fff}
+.print{background:none;border:0;padding:0;font:inherit;font-size:.88rem;color:var(--gold-ink);text-decoration:underline;cursor:pointer}
+.recipe section{margin-top:3.2rem}
+.recipe h2{margin:0 0 1.6rem;font:400 1.9rem/1.2 var(--serif);color:var(--green);text-align:center}
+.recipe h2::after{content:"";display:block;width:36px;height:1px;background:var(--gold);margin:.8rem auto 0}
+h3.sub{margin:2.2rem 0 .2rem;font:italic 1.3rem var(--serif);color:var(--gold-ink)}
+.intro{margin:0 0 .6rem;color:var(--muted);font-size:.95rem}
+.grp h4{margin:1.2rem 0 .3rem;font:600 .74rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+.grp p{margin:.3rem 0;font-size:.96rem}
+.grp .note{color:var(--muted);font-size:.88rem}
+.grid2{display:grid;gap:0 3rem;grid-template-columns:1fr}
+@media(min-width:660px){.grid2{grid-template-columns:1fr 1fr}}
+.ing{list-style:none;margin:0;padding:0}
+.ing li{display:flex;align-items:baseline;gap:.5rem;padding:.3rem 0;font-size:.97rem}
+.ing .dots{flex:1;min-width:1rem;border-bottom:1px dotted #cfc6b1;transform:translateY(-.25rem)}
+.ing .q{white-space:nowrap;font-weight:600;color:var(--green)}
+.ing .q.tbc{font-weight:400;font-style:italic;color:var(--muted)}
+
+/* pasos */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.6rem 1fr;gap:.6rem;padding:1.15rem 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font:italic 1.9rem/1 var(--serif);color:var(--gold)}
+.steps strong{display:block;margin-bottom:.2rem;font:600 .78rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.steps p{margin:0}
+
+/* esquema de capas */
+.stack{max-width:360px;margin:0 auto .6rem;display:grid;gap:3px}
+.lay{padding:.65rem 1rem;text-align:center;font:italic 1.08rem var(--serif);border-radius:2px}
+.lay.choco{background:#4b3329;color:#f6ece3}
+.lay.yema{background:#e9b04a;color:#47320f}
+.lay.nuez{background:#e8d8b8;color:#51442a}
+.lay.limon{background:#efe6a8;color:#58531d}
+.fr{padding:.32rem 1rem;text-align:center;font-size:.76rem;letter-spacing:.06em;color:var(--gold-ink);border:1px dashed var(--gold);border-radius:2px;background:#fff}
+.stack-cap{margin:0 0 2rem;text-align:center;color:var(--muted);font-size:.85rem}
+.aside{margin:1.6rem 0 0;padding:1.1rem 1.3rem;border-left:2px solid var(--gold);background:#fff}
+.aside strong{display:block;margin-bottom:.2rem;font:600 .78rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.aside p{margin:0}
+
+/* trucos */
+.tips{list-style:none;margin:0;padding:0}
+.tips li{position:relative;padding:.45rem 0 .45rem 1.7rem}
+.tips li::before{content:"";position:absolute;left:.2rem;top:1.05rem;width:9px;height:9px;background:var(--gold);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.tips b{color:var(--green)}
+
+/* pendientes */
+.pending{margin-top:3rem;border:1px solid var(--line);border-radius:3px;background:#fff;padding:.2rem 1.2rem}
+.pending summary{cursor:pointer;padding:.8rem 0;font:italic 1.05rem var(--serif);color:var(--gold-ink)}
+.pending ul{margin:0 0 1rem;padding-left:1.2rem;color:var(--muted);font-size:.93rem}
+
+/* navegación entre recetas */
+.pager{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:3.2rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:.95rem}
+.pager a{color:var(--green);text-decoration:none}
+.pager a:hover{text-decoration:underline}
+
+/* pie */
+footer{background:var(--green);color:#e9e2d0;text-align:center;padding:1.2rem 1rem 1.8rem;font-size:.85rem}
+footer .orn{margin:.4rem auto 1rem}
+footer a{color:#e9e2d0}
+
+@media(max-width:520px){body{font-size:16px}.hero{padding-top:3.2rem}}
+@media(prefers-reduced-motion:reduce){.snow{display:none}html{scroll-behavior:auto}}
+@media print{
+  .top,.snow,.pager,.print,.back,footer,.pending{display:none}
+  body{background:#fff;font-size:12pt}
+  .recipe section{margin-top:1.6rem;break-inside:avoid-page}
+  .steps li{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Ir al contenido</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/">Silvia Blanco</a>
+    <nav aria-label="Principal"><a href="#/">Curso de turrón</a></nav>
+  </div>
+</header>
+
+<main id="app"><noscript><p class="wrap narrow center" style="padding:4rem 1rem">Esta página necesita JavaScript para mostrar las recetas.</p></noscript></main>
+
+<footer>
+  <div class="orn" aria-hidden="true"><span></span><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 3l1.9 7.1L21 12l-7.1 1.9L12 21l-1.9-7.1L3 12l7.1-1.9z" fill="currentColor"/></svg><span></span></div>
+  Apuntes personales del curso de turrón artesano · <a href="/">Silvia Blanco</a>
+</footer>
+
+<script>
+/* ============================================================
+   RECETAS — para añadir una receta nueva, copia un bloque de
+   la lista y cambia "ready" a true cuando esté terminada.
+   ============================================================ */
+var RECIPES = [
+  {
+    id: 'pan-de-cadiz', num: '01', ready: true,
+    title: 'Pan de Cádiz',
+    short: 'Mazapán de almendra en cuatro capas: limón, nueces, yema y chocolate.',
+    lead: 'Un bloque de mazapán de almendra en cuatro capas: limón con fruta confitada, nueces, yema y chocolate. Se prepara una única base de mazapán, que se mantiene caliente mientras se montan las capas una a una en un molde forrado de film y canela.',
+    meta: ['4 capas', 'Rinde 2.450 g en un molde grande de algo más de 2 litros', 'Mazapán base caliente a 42\u00a0°C'],
+    ingredients: [
+      { heading: 'Mazapán base', groups: [
+        { title: 'Primera parte', items: [['Nata para montar', '50 g'], ['Leche condensada', '50 g'], ['Chocolate blanco', '90 g']] },
+        { title: 'Segunda parte', items: [['Harina de almendra', '580 g'], ['Azúcar en grano', '125 g'], ['Patata bien escurrida, pesada en crudo', '75 g']] },
+        { title: 'Jarabe', items: [['Azúcar', '500 g'], ['Agua', '100 g'], ['Glucosa (sirope)', '125 g']] }
+      ]},
+      { heading: 'Las cuatro capas', intro: 'Cada capa lleva 400 g de mazapán base.', cols: 2, groups: [
+        { title: 'Limón', items: [['Licor seco (ron, whisky, vodka…)', '6 gotas'], ['Colorante', 'por confirmar'], ['Pasta de limón', '20 g'], ['Fruta confitada en dados', '80 g']] },
+        { title: 'Nueces', note: 'Encima: naranja confitada con cerezas.', items: [['Nueces troceadas', '80 g'], ['Vainilla', 'por confirmar'], ['Licor', '2 cucharadas']] },
+        { title: 'Yema', note: 'Encima: tiras de fruta confitada.', items: [['Yema dura (receta abajo)', '125 g'], ['Colorante de huevo', 'por confirmar'], ['Vainilla azucarada', 'por confirmar']] },
+        { title: 'Chocolate', items: [['Cacao en polvo', '25 g'], ['Pasta de naranja (opcional)', 'por confirmar']] }
+      ]},
+      { heading: 'Preparaciones aparte', cols: 2, groups: [
+        { title: 'Yema dura para turrones', items: [['Huevos', '2 (112 g)'], ['Azúcar', '112 g'], ['Maicena (10 %)', '12 g'], ['Colorante de huevo', '1 cucharadita de café'], ['Cremor tártaro (cream of tartar)', 'por confirmar']] },
+        { title: 'Naranja confitada', items: [['Naranja en gajos', '1 kg'], ['Azúcar', '500 g'], ['Agua', '250 g']] },
+        { title: 'Pasta de limón (casera)', text: 'Piel de limón y el mismo peso de azúcar, trituradas con la Thermomix o una picadora potente hasta que quede lo más fina y compacta posible.' },
+        { title: 'Además', text: 'Cerezas confitadas, fruta confitada en tiras (verde, clara y roja, o bien orejones o dátiles), canela en polvo y papel film para forrar el molde.' }
+      ]}
+    ],
+    prep: [
+      ['Primera parte', 'Funde e integra la nata para montar (50 g), la leche condensada (50 g) y el chocolate blanco (90 g), siempre en este orden: primero la nata, luego la leche condensada y al final el chocolate, para que no se pegue. El fundido se hace en el microondas en tandas de 1 minuto, o al baño maría.'],
+      ['Segunda parte', 'Mezcla la harina de almendra (580 g), el azúcar en grano (125 g) y la patata (75 g, bien escurrida pero pesada en crudo). Une esta mezcla con la de la primera parte.'],
+      ['Jarabe', 'Cuece 500 g de azúcar con 100 g de agua y 125 g de glucosa (sirope) hasta 126\u00a0°C. Hay que esperar un buen rato hasta que la temperatura suba a 126\u00a0°C.'],
+      ['Hueco para el jarabe', 'Pega la mezcla de la segunda parte a las paredes del bol, dejando un hueco en el centro donde se verterá el jarabe. Calienta el bol por fuera con un secador de pelo para que la masa no se pegue.'],
+      ['Incorporar el jarabe', 'Ve añadiendo el jarabe poco a poco, para que no salpique, y mezcla.'],
+      ['Punto', 'La masa está lista cuando deja de pegarse al bol. Ese es el mazapán base.'],
+      ['Mantener caliente', 'Guarda el mazapán en el horno a 42\u00a0°C mientras montas las capas.'],
+      ['Molde', 'Fórralo con papel film y espolvoréalo con canela.']
+    ],
+    assembly: [
+      ['Limón', 'Mezcla 400 g de mazapán con 6 gotas de licor seco (ron, whisky, vodka…) y el colorante. Añade 20 g de pasta de limón y 80 g de fruta confitada cortada en dados. Pon la mezcla bien mezclada dentro del molde ya forrado.'],
+      ['Nueces', 'Haz una capa de canela sobre el limón. Mezcla 400 g de mazapán con 80 g de nueces troceadas, vainilla y 2 cucharadas de licor, que dan buen color. Ponlo en el molde. Encima coloca la naranja confitada con las cerezas, sin que toquen los bordes del molde, y cúbrelo bien de canela: aquí es imprescindible, absorbe la poca humedad que pueda haber.'],
+      ['Yema', 'Remueve los 2 huevos con el azúcar, la maicena, el colorante y el cremor tártaro, sin que haga espuma y sin dejar ningún grumo. Cuécelo en el microondas en tandas de 1 minuto, removiendo entre una y otra, o directamente al fuego sin dejar de remover para que no se pegue. Mezcla muy bien 400 g de mazapán con 125 g de esa yema, colorante de huevo y vainilla azucarada hasta tener una masa homogénea. Ponla en el molde como una capa nueva.'],
+      ['Tiras de fruta confitada', 'Sobre la yema coloca las tiras de fruta confitada a lo largo del molde, en tres filas: una verde, una clara y una roja, cada fila con dos piezas puestas una tras otra. Que no toquen los bordes del molde. Se pueden cambiar por orejones o dátiles. Cúbrelo bien de canela, que absorbe la humedad de la fruta.'],
+      ['Chocolate', 'Mezcla 400 g de mazapán con 25 g de cacao en polvo y, si quieres, pasta de naranja (es opcional). Pon la capa en el molde, cubre con canela y aprieta bien.'],
+      ['Cierre', 'Tapa con film. Nunca en la nevera.']
+    ],
+    confit: ['Naranja confitada', 'Va sobre la capa de nueces, junto con cerezas confitadas. Cuece los gajos tres veces, 5 minutos cada vez, tirando el agua y poniéndolos con agua fría en cada ocasión. Cantidades de la receta: 1 kg de naranja, 500 g de azúcar y 250 g de agua.'],
+    tips: [
+      ['Orden en la primera parte:', 'nata, leche condensada y chocolate, en ese orden, para que el chocolate no se pegue.'],
+      ['La patata', 'va bien escurrida, pero el peso (75 g) es el de la patata cruda.'],
+      ['El secador', 'calienta el bol por fuera para que la masa no se pegue al verter el jarabe.'],
+      ['El jarabe', 'se añade poco a poco para que no salpique.'],
+      ['Punto del mazapán:', 'está bien cuando no se pega al bol.'],
+      ['Calor:', 'el mazapán base se guarda en el horno a 42\u00a0°C mientras se montan las capas.'],
+      ['Yema dura:', 'sin espuma y sin grumos. El cremor tártaro evita que se ponga verde. Microondas en tandas de 1 minuto, o al fuego removiendo siempre.'],
+      ['Canela:', 'en todo, siempre bien cubierto: en el molde forrado, entre capas y sobre la fruta, porque absorbe la humedad.'],
+      ['Fruta:', 'que no toque los bordes del molde.'],
+      ['Al terminar:', 'apretar bien la última capa, cubrir con film y no meter nunca en la nevera.']
+    ],
+    pending: [
+      'Cantidad de pasta de naranja de la capa de chocolate (opcional).',
+      'Cantidades de colorantes, vainilla de las capas y cremor tártaro.',
+      'Cómo se cuece la patata antes de escurrirla.',
+      'Qué fruta es cada tira confitada y cuánta se usa.',
+      'Medidas exactas del molde, reposo antes de desmoldar y cómo se corta.'
+    ]
+  },
+  { id: 'limon-con-fruta', num: '02', ready: false, title: 'Turrón de limón con fruta' },
+  { id: 'yema', num: '03', ready: false, title: 'Turrón de yema' },
+  { id: 'coco', num: '04', ready: false, title: 'Turrón de coco' },
+  { id: 'nata-nuez', num: '05', ready: false, title: 'Turrón de nata y nuez' },
+  { id: 'yema-datil', num: '06', ready: false, title: 'Turrón de yema y dátil' }
+];
+
+/* ============================================================
+   Código de la página (no hace falta tocarlo)
+   ============================================================ */
+var APP = document.getElementById('app');
+var ORN = '<div class="orn" aria-hidden="true"><span></span><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 3l1.9 7.1L21 12l-7.1 1.9L12 21l-1.9-7.1L3 12l7.1-1.9z" fill="currentColor"/></svg><span></span></div>';
+
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function qty(q) {
+  return '<span class="q' + (/por confirmar/.test(q) ? ' tbc' : '') + '">' + esc(q) + '</span>';
+}
+
+function ingList(items) {
+  return '<ul class="ing">' + items.map(function (i) {
+    return '<li><span class="n">' + esc(i[0]) + '</span><span class="dots"></span>' + qty(i[1]) + '</li>';
+  }).join('') + '</ul>';
+}
+
+function group(g) {
+  return '<div class="grp"><h4>' + esc(g.title) + '</h4>' +
+    (g.note ? '<p class="note">' + esc(g.note) + '</p>' : '') +
+    (g.items ? ingList(g.items) : '') +
+    (g.text ? '<p>' + esc(g.text) + '</p>' : '') + '</div>';
+}
+
+function ingredientBlock(b) {
+  return '<h3 class="sub">' + esc(b.heading) + '</h3>' +
+    (b.intro ? '<p class="intro">' + esc(b.intro) + '</p>' : '') +
+    '<div class="' + (b.cols === 2 ? 'grid2' : '') + '">' + b.groups.map(group).join('') + '</div>';
+}
+
+function steps(list) {
+  return '<ol class="steps">' + list.map(function (s) {
+    return '<li><div><strong>' + esc(s[0]) + '</strong><p>' + esc(s[1]) + '</p></div></li>';
+  }).join('') + '</ol>';
+}
+
+function stack() {
+  return '<div class="stack" role="img" aria-label="Capas del molde, de arriba abajo: chocolate, tiras de fruta confitada, yema, naranja confitada y cerezas, nueces, limón">' +
+    '<div class="lay choco">Chocolate</div>' +
+    '<div class="fr">tiras de fruta confitada</div>' +
+    '<div class="lay yema">Yema</div>' +
+    '<div class="fr">naranja confitada y cerezas</div>' +
+    '<div class="lay nuez">Nueces</div>' +
+    '<div class="lay limon">Limón con fruta</div></div>' +
+    '<p class="stack-cap">Así se ve en el molde, de arriba abajo, con canela entre capas.</p>';
+}
+
+function homeView() {
+  return '<section class="hero"><div class="snow" aria-hidden="true"></div><div class="wrap narrow center">' +
+    '<p class="kicker">Turrón de mazapán artesano</p>' +
+    '<h1 tabindex="-1">Curso de turrón</h1>' +
+    '<p class="sub">Las recetas del curso, paso a paso y con todos los detalles.</p>' + ORN +
+    '</div></section>' +
+    '<section class="wrap"><h2 class="vh">Recetas</h2><ol class="cards">' +
+    RECIPES.map(card).join('') + '</ol></section>';
+}
+
+function card(r) {
+  if (r.ready) {
+    return '<li><a class="card" href="#/receta/' + r.id + '"><span class="num">' + r.num + '</span><h3>' + esc(r.title) + '</h3><p>' + esc(r.short) + '</p><span class="tag">Ver receta →</span></a></li>';
+  }
+  return '<li><div class="card soon"><span class="num">' + r.num + '</span><h3>' + esc(r.title) + '</h3><span class="tag">Próximamente</span></div></li>';
+}
+
+function recipeView(r) {
+  var ready = RECIPES.filter(function (x) { return x.ready; });
+  var i = ready.indexOf(r), prev = ready[i - 1], next = ready[i + 1];
+  var pager = '<nav class="pager" aria-label="Más recetas"><span>' +
+    (prev ? '<a href="#/receta/' + prev.id + '">← ' + esc(prev.title) + '</a>' : '') + '</span>' +
+    '<a href="#/">Todas las recetas</a><span>' +
+    (next ? '<a href="#/receta/' + next.id + '">' + esc(next.title) + ' →</a>' : '') + '</span></nav>';
+
+  return '<article class="wrap narrow recipe">' +
+    '<a class="back" href="#/">← Todas las recetas</a>' +
+    '<header class="r-head"><p class="kicker">Receta ' + r.num + '</p><h1 tabindex="-1">' + esc(r.title) + '</h1>' +
+    '<p class="lead">' + esc(r.lead) + '</p>' + ORN +
+    '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' +
+    '<button class="print" type="button" data-print>Imprimir receta</button></header>' +
+    '<section><h2>Ingredientes</h2>' + r.ingredients.map(ingredientBlock).join('') + '</section>' +
+    '<section><h2>Preparación del mazapán base</h2>' + steps(r.prep) + '</section>' +
+    '<section><h2>Montaje de las capas</h2>' + stack() + steps(r.assembly) +
+    '<div class="aside"><strong>' + esc(r.confit[0]) + '</strong><p>' + esc(r.confit[1]) + '</p></div></section>' +
+    '<section><h2>Trucos del curso</h2><ul class="tips">' +
+    r.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + esc(t[1]) + '</li>'; }).join('') + '</ul></section>' +
+    '<details class="pending"><summary>Notas pendientes del curso</summary><ul>' +
+    r.pending.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></details>' +
+    pager + '</article>';
+}
+
+function startSnow() {
+  var el = APP.querySelector('.snow');
+  if (!el) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var html = '';
+  for (var k = 0; k < 18; k++) {
+    var s = 2 + Math.random() * 3;
+    html += '<i style="left:' + (Math.random() * 100).toFixed(1) + '%;width:' + s.toFixed(1) + 'px;height:' + s.toFixed(1) +
+      'px;animation-duration:' + (9 + Math.random() * 10).toFixed(1) + 's;animation-delay:' + (-Math.random() * 14).toFixed(1) +
+      's;--dx:' + Math.round(Math.random() * 40 - 20) + 'px"></i>';
+  }
+  el.innerHTML = html;
+}
+
+function route() {
+  var m = location.hash.match(/^#\/receta\/([\w-]+)$/);
+  var r = null;
+  if (m) {
+    r = RECIPES.filter(function (x) { return x.id === m[1] && x.ready; })[0] || null;
+  }
+  APP.innerHTML = r ? recipeView(r) : homeView();
+  document.title = (r ? r.title + ' · ' : '') + 'Curso de turrón · Silvia Blanco';
+  window.scrollTo(0, 0);
+  var h = APP.querySelector('h1');
+  if (h && h.focus) h.focus({ preventScroll: true });
+  var b = APP.querySelector('[data-print]');
+  if (b) b.addEventListener('click', function () { window.print(); });
+  if (!r) startSnow();
+}
+
+window.addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>
