@@ -138,6 +138,24 @@ h3.sub{margin:2.2rem 0 .2rem;font:italic 1.3rem var(--serif);color:var(--gold-in
 .pager a{color:var(--green);text-decoration:none}
 .pager a:hover{text-decoration:underline}
 
+
+/* contacto */
+.contact-open{background:none;border:0;padding:0;font:inherit;color:#e9e2d0;text-decoration:underline;cursor:pointer}
+.contact-open:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.contact{width:min(92vw,24rem);padding:0;border:1px solid var(--gold);border-radius:4px;background:var(--paper);color:var(--ink);box-shadow:0 24px 60px -20px rgba(29,58,46,.45)}
+.contact::backdrop{background:rgba(29,58,46,.45)}
+.contact-in{padding:2rem 1.6rem 1.7rem;text-align:center}
+.contact-x{position:absolute;top:.4rem;right:.5rem;width:44px;height:44px;border:0;background:none;font:300 1.9rem/1 var(--sans);color:var(--muted);cursor:pointer}
+.contact h2{margin:0;font:400 1.7rem/1.2 var(--serif);color:var(--green)}
+.contact .who{margin:.9rem 0 0;font:600 .74rem var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink)}
+.contact .orn{margin:1rem auto}
+.contact-btns{display:grid;gap:.6rem;margin-top:1.1rem}
+.contact-btns a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;padding:.55rem 1rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--green);text-decoration:none;font-size:.82rem;color:var(--muted);transition:border-color .15s}
+.contact-btns a:hover{border-color:var(--gold)}
+.contact-btns a b{font:600 1rem var(--sans);color:var(--green)}
+.contact-btns a.main{background:var(--green);border-color:var(--green)}
+.contact-btns a.main,.contact-btns a.main b{color:#fff}
+
 /* pie */
 footer{background:var(--green);color:#e9e2d0;text-align:center;padding:1.2rem 1rem 1.8rem;font-size:.85rem}
 footer .orn{margin:.4rem auto 1rem}
@@ -176,7 +194,7 @@ footer a{color:#e9e2d0}
 @media(hover:none){a.card:hover{box-shadow:none}}
 @media(prefers-reduced-motion:reduce){.snow{display:none}html{scroll-behavior:auto}}
 @media print{
-  .top,.snow,.pager,.print,.back,footer,.pending,.scaler-b,.scaler-c,.scaler-t{display:none}
+  .top,.snow,.pager,.print,.back,footer,.pending,.scaler-b,.scaler-c,.scaler-t,.contact{display:none}
   body{background:#fff;font-size:12pt}
   .recipe section{margin-top:1.6rem;break-inside:avoid-page}
   .steps li{break-inside:avoid}
@@ -197,8 +215,13 @@ footer a{color:#e9e2d0}
 
 <footer>
   <div class="orn" aria-hidden="true"><span></span><svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 3l1.9 7.1L21 12l-7.1 1.9L12 21l-1.9-7.1L3 12l7.1-1.9z" fill="currentColor"/></svg><span></span></div>
-  Apuntes personales del curso de turrón artesano · <a href="/">Silvia Blanco</a>
+  Apuntes personales del curso de turrón artesano · <button type="button" class="contact-open" data-contact aria-haspopup="dialog">Silvia Blanco</button>
 </footer>
+
+<dialog id="contact" class="contact" aria-labelledby="contact-t">
+  <form method="dialog"><button class="contact-x" aria-label="Cerrar">×</button></form>
+  <div class="contact-in"></div>
+</dialog>
 
 <script>
 /* ============================================================
@@ -477,6 +500,34 @@ function route() {
   startSnow(document.getElementById('snowPage'), r ? 16 : 0);
   if (!r) startSnow(APP.querySelector('.snow'), 18);
 }
+
+
+/* ---- Contacto ---- */
+(function () {
+  var dlg = document.getElementById('contact');
+  var opener = null;
+  function build() {
+    /* el correo se monta al abrir, para que no lo recojan los robots */
+    var mail = ['hola', 'silviablanco.com'].join('@');
+    var tel = '+34649383744';
+    dlg.querySelector('.contact-in').innerHTML =
+      '<h2 id="contact-t">Datos de contacto</h2><p class="who">Silvia Blanco</p>' + ORN +
+      '<div class="contact-btns">' +
+      '<a class="main" href="tel:' + tel + '"><b>Llamar</b>+34 649 38 37 44</a>' +
+      '<a href="https://wa.me/34649383744" target="_blank" rel="noopener"><b>WhatsApp</b>+34 649 38 37 44</a>' +
+      '<a href="mailto:' + mail + '"><b>Enviar email</b>' + mail + '</a></div>';
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-contact]') : null;
+    if (t) {
+      opener = t; build();
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      return;
+    }
+    if (e.target === dlg && dlg.close) dlg.close();   /* clic fuera de la tarjeta */
+  });
+  dlg.addEventListener('close', function () { if (opener) opener.focus(); });
+})();
 
 window.addEventListener('hashchange', route);
 route();
