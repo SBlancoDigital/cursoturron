@@ -84,6 +84,19 @@ h3.sub{margin:2.2rem 0 .2rem;font:italic 1.3rem var(--serif);color:var(--gold-in
 .ing .q{white-space:nowrap;font-weight:600;color:var(--green)}
 .ing .q.tbc{font-weight:400;font-style:italic;color:var(--muted)}
 
+
+/* ajustar cantidades */
+.scaler{margin:2.2rem auto 0;max-width:34rem;text-align:center}
+.scaler-t{display:block;margin-bottom:.6rem;font:600 .74rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
+.scaler-b{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.scaler button{min-width:3.2rem;min-height:44px;padding:0 .95rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--green);font:inherit;font-size:1rem;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.scaler button:hover{border-color:var(--gold)}
+.scaler button[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.scaler-c{display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;font-size:.92rem;color:var(--muted)}
+.scaler-c input{width:4.6rem;min-height:44px;padding:0 .6rem;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--green);font:inherit;font-size:1rem;text-align:center}
+.scale-note{margin:.9rem 0 0;font:italic 1rem var(--serif);color:var(--gold-ink)}
+.scale-note small{display:block;margin-top:.15rem;font:.82rem var(--sans);font-style:normal;color:var(--muted)}
+
 /* pasos */
 .steps{list-style:none;margin:0;padding:0;counter-reset:s}
 .steps li{counter-increment:s;display:grid;grid-template-columns:2.6rem 1fr;gap:.6rem;padding:1.15rem 0;border-top:1px solid var(--line)}
@@ -159,7 +172,7 @@ footer a{color:#e9e2d0}
 @media(hover:none){a.card:hover{box-shadow:none}}
 @media(prefers-reduced-motion:reduce){.snow{display:none}html{scroll-behavior:auto}}
 @media print{
-  .top,.snow,.pager,.print,.back,footer,.pending{display:none}
+  .top,.snow,.pager,.print,.back,footer,.pending,.scaler-b,.scaler-c,.scaler-t{display:none}
   body{background:#fff;font-size:12pt}
   .recipe section{margin-top:1.6rem;break-inside:avoid-page}
   .steps li{break-inside:avoid}
@@ -269,8 +282,44 @@ function esc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+
+/* ---- Ajuste de cantidades ---- */
+var SCALE = 1;
+var PRESETS = [[0.5, '½'], [1, '1'], [1.5, '1½'], [2, '2'], [3, '3']];
+
+function num(n, dec) {
+  var f = Math.pow(10, dec);
+  return String(Math.round(n * f) / f).replace('.', ',');
+}
+function halves(n) {
+  var r = Math.round(n * 2) / 2, w = Math.floor(r);
+  return (r - w ? (w ? w : '') + '½' : String(w));
+}
+function plural(n, one, many) { return n > 1 ? many : one; }
+
+/* escala las cantidades con unidad (g, kg, gotas, cucharadas, huevos) */
+function sc(text) {
+  if (SCALE === 1) return text;
+  return String(text).replace(/(\d+(?:,\d+)?)(\s?)(kg|g|gotas?|cucharaditas?|cucharadas?|huevos?)(?![A-Za-zÁÉÍÓÚáéíóúñ])/g, function (m, n, sp, u) {
+    var v = parseFloat(n.replace(',', '.')) * SCALE;
+    if (u === 'g') return (v >= 10 ? num(v, 0) : num(v, 1)) + sp + 'g';
+    if (u === 'kg') return num(v, 2) + sp + 'kg';
+    var base = u.replace(/s$/, '');
+    var forms = { gota: 'gotas', cucharada: 'cucharadas', cucharadita: 'cucharaditas', huevo: 'huevos' };
+    var h = Math.round(v * 2) / 2;
+    return halves(v) + sp + (h > 1 ? forms[base] : base);
+  });
+}
+/* "2 (112 g)": el número suelto de huevos */
+function scQty(q) {
+  if (SCALE === 1) return q;
+  var m = q.match(/^(\d+) \((.*)\)$/);
+  if (m) return halves(parseInt(m[1], 10) * SCALE) + ' (' + sc(m[2]) + ')';
+  return sc(q);
+}
+
 function qty(q) {
-  return '<span class="q' + (/por confirmar/.test(q) ? ' tbc' : '') + '">' + esc(q) + '</span>';
+  return '<span class="q' + (/por confirmar/.test(q) ? ' tbc' : '') + '">' + esc(scQty(q)) + '</span>';
 }
 
 function ingList(items) {
@@ -288,7 +337,7 @@ function group(g) {
 
 function ingredientBlock(b) {
   return '<h3 class="sub">' + esc(b.heading) + '</h3>' +
-    (b.intro ? '<p class="intro">' + esc(b.intro) + '</p>' : '') +
+    (b.intro ? '<p class="intro">' + esc(sc(b.intro)) + '</p>' : '') +
     '<div class="' + (b.cols === 2 ? 'grid2' : '') + '">' + b.groups.map(group).join('') + '</div>';
 }
 
@@ -326,6 +375,47 @@ function card(r) {
   return '<li><div class="card soon"><span class="num">' + r.num + '</span><h3>' + esc(r.title) + '</h3><span class="tag">Próximamente</span></div></li>';
 }
 
+
+function scalerView() {
+  var isPreset = PRESETS.some(function (p) { return p[0] === SCALE; });
+  var note = SCALE !== 1
+    ? '<p class="scale-note" role="status">Cantidades ×' + num(SCALE, 2) + '<small>Los tiempos y las temperaturas no cambian.</small></p>'
+    : '';
+  return '<div class="scaler" role="group" aria-label="Ajustar cantidades"><span class="scaler-t">Ajustar cantidades</span>' +
+    '<div class="scaler-b">' + PRESETS.map(function (p) {
+      return '<button type="button" data-scale="' + p[0] + '" aria-pressed="' + (p[0] === SCALE) + '" aria-label="Multiplicar por ' + p[1] + '">×' + p[1] + '</button>';
+    }).join('') + '</div>' +
+    '<label class="scaler-c">Otro factor ×<input type="text" inputmode="decimal" autocomplete="off" data-scale-input value="' +
+    (isPreset ? '' : num(SCALE, 2)) + '" placeholder="1,25" aria-label="Otro factor de multiplicación"></label>' +
+    note + '</div>';
+}
+
+function setScale(r, v, focus) {
+  if (!(v > 0)) return;
+  SCALE = Math.min(20, Math.max(0.1, v));
+  var y = window.scrollY;
+  APP.innerHTML = recipeView(r);
+  bindRecipe(r);
+  window.scrollTo(0, y);
+  if (focus) { var el = APP.querySelector(focus); if (el && el.focus) el.focus({ preventScroll: true }); }
+}
+
+function bindRecipe(r) {
+  var b = APP.querySelector('[data-print]');
+  if (b) b.addEventListener('click', function () { window.print(); });
+  Array.prototype.forEach.call(APP.querySelectorAll('[data-scale]'), function (btn) {
+    btn.addEventListener('click', function () {
+      var v = parseFloat(btn.getAttribute('data-scale'));
+      setScale(r, v, '[data-scale="' + v + '"]');
+    });
+  });
+  var inp = APP.querySelector('[data-scale-input]');
+  if (inp) inp.addEventListener('change', function () {
+    var v = parseFloat(inp.value.replace(',', '.'));
+    if (v > 0) setScale(r, v, '[data-scale-input]'); else inp.value = '';
+  });
+}
+
 function recipeView(r) {
   var ready = RECIPES.filter(function (x) { return x.ready; });
   var i = ready.indexOf(r), prev = ready[i - 1], next = ready[i + 1];
@@ -339,13 +429,13 @@ function recipeView(r) {
     '<header class="r-head"><p class="kicker">Receta ' + r.num + '</p><h1 tabindex="-1">' + esc(r.title) + '</h1>' +
     '<p class="lead">' + esc(r.lead) + '</p>' + ORN +
     (r.meta && r.meta.length ? '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' : '') +
-    '<button class="print" type="button" data-print>Imprimir receta</button></header>' +
+    '<button class="print" type="button" data-print>Imprimir receta</button>' + scalerView() + '</header>' +
     '<section><h2>Ingredientes</h2>' + r.ingredients.map(ingredientBlock).join('') + '</section>' +
     '<section><h2>Preparación del mazapán base</h2>' + steps(r.prep) + '</section>' +
     '<section><h2>Montaje de las capas</h2>' + stack() + steps(r.assembly) +
-    '<div class="aside"><strong>' + esc(r.confit[0]) + '</strong><p>' + esc(r.confit[1]) + '</p></div></section>' +
+    '<div class="aside"><strong>' + esc(r.confit[0]) + '</strong><p>' + esc(sc(r.confit[1])) + '</p></div></section>' +
     '<section><h2>Trucos del curso</h2><ul class="tips">' +
-    r.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + esc(t[1]) + '</li>'; }).join('') + '</ul></section>' +
+    r.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + esc(sc(t[1])) + '</li>'; }).join('') + '</ul></section>' +
     '<details class="pending"><summary>Notas pendientes del curso</summary><ul>' +
     r.pending.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></details>' +
     pager + '</article>';
@@ -365,19 +455,21 @@ function startSnow() {
   el.innerHTML = html;
 }
 
+var LAST = null;
 function route() {
   var m = location.hash.match(/^#\/receta\/([\w-]+)$/);
   var r = null;
   if (m) {
     r = RECIPES.filter(function (x) { return x.id === m[1] && x.ready; })[0] || null;
   }
+  if (!r || r.id !== LAST) SCALE = 1;
+  LAST = r ? r.id : null;
   APP.innerHTML = r ? recipeView(r) : homeView();
   document.title = (r ? r.title + ' · ' : '') + 'Curso de turrón · Silvia Blanco';
   window.scrollTo(0, 0);
   var h = APP.querySelector('h1');
   if (h && h.focus) h.focus({ preventScroll: true });
-  var b = APP.querySelector('[data-print]');
-  if (b) b.addEventListener('click', function () { window.print(); });
+  if (r) bindRecipe(r);
   if (!r) startSnow();
 }
 
