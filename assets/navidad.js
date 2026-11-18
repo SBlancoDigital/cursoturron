@@ -36,7 +36,14 @@
       '<p class="xmas-count" aria-live="polite">' + countText() + '</p>';
   };
 
+  /* quién está en el belén según la fecha: el Niño llega en Nochebuena y los Reyes el 6 de enero */
+  function belen() {
+    var n = new Date(), m = n.getMonth(), d = n.getDate();
+    return { nino: (m === 11 && d >= 24) || m === 0, reyes: m === 0 && d >= 6 };
+  }
+
   window.xmasScene = function () {
+    var B = belen();
     var rey = function (x, h, manto, esc) {
       /* un Rey Mago: manto, cabeza, corona y regalo; h = altura */
       var s = h / 70;
@@ -66,7 +73,7 @@
         '</g>';
     };
     var svg =
-      '<svg viewBox="0 0 800 240" role="img" aria-label="Belén de Navidad: la estrella, el portal con el Niño, los Reyes Magos, un pastor y sus ovejas">' +
+      '<svg viewBox="0 0 800 240" role="img" aria-label="Belén de Navidad: la estrella, el portal con María y José' + (B.nino ? ', el Niño' : ', la cuna vacía') + (B.reyes ? ', los Reyes Magos' : '') + ', un pastor y sus ovejas">' +
       '<defs>' +
       '<radialGradient id="xg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe9a6" stop-opacity=".95"/><stop offset="1" stop-color="#ffe9a6" stop-opacity="0"/></radialGradient>' +
       '<linearGradient id="xb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a6" stop-opacity=".55"/><stop offset="1" stop-color="#ffe9a6" stop-opacity="0"/></linearGradient>' +
@@ -94,8 +101,7 @@
       '<rect x="10" y="62" width="120" height="6" fill="#6b4a2b"/>' +
       /* cuna con el Niño */
       '<path d="M50 146 h40 l-5 -13 h-30z" fill="#8a5a2b"/>' +
-      '<ellipse cx="70" cy="131" rx="14" ry="6" fill="#fff2b8"/>' +
-      '<circle cx="70" cy="128" r="4.6" fill="#f2c9a0"/>' +
+      (B.nino ? '<ellipse cx="70" cy="131" rx="14" ry="6" fill="#fff2b8"/><circle cx="70" cy="128" r="4.6" fill="#f2c9a0"/>' : '<path d="M54 140 q16 6 32 0" fill="none" stroke="#e8c76a" stroke-width="2" opacity=".7"/>') +
       /* María */
       '<circle cx="36" cy="108" r="8" fill="#f2c9a0"/>' +
       '<path d="M22 148 Q26 118 36 115 Q48 118 50 148Z" fill="#3b5ea8"/>' +
@@ -112,7 +118,7 @@
       '<path d="M-5 -60 Q4 -70 13 -60Z" fill="#5b3a2a"/></g>' +
       oveja(236, 216, 1) + oveja(286, 224, .8) +
       /* Reyes Magos */
-      rey(500, 74, '#a4202d', '#2f7d4f') + rey(548, 82, '#2f7d4f', '#a4202d') + rey(600, 68, '#4f3a8c', '#c99a3b') +
+      (B.reyes ? rey(500, 74, '#a4202d', '#2f7d4f') + rey(548, 82, '#2f7d4f', '#a4202d') + rey(600, 68, '#4f3a8c', '#c99a3b') : '') +
       /* pinos */
       pino(40, 1) + pino(94, .72) + pino(748, 1) + pino(700, .76) +
       '</svg>';
