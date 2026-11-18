@@ -91,16 +91,17 @@ function homeView() {
   return '<section class="hero"><div class="snow" aria-hidden="true"></div><div class="wrap narrow center">' +
     '<h1 tabindex="-1">Curso de turrón artesano</h1>' +
     '<p class="sub">Las recetas del curso, paso a paso y con todos los detalles.</p>' + ORN +
-    '</div></section>' +
+    (window.xmasToggle ? window.xmasToggle() : '') +
+    '</div>' + (window.xmasScene ? window.xmasScene() : '') + '</section>' +
     '<section class="wrap"><h2 class="vh">Recetas</h2><ol class="cards">' +
     RECIPES.map(card).join('') + '</ol></section>';
 }
 
 function card(r) {
   if (r.ready) {
-    return '<li><a class="card" href="#/receta/' + r.id + '"><span class="num">' + r.num + '</span><h3>' + esc(r.title) + '</h3><p>' + esc(r.short) + '</p><span class="tag">Ver receta →</span></a></li>';
+    return '<li><a class="card" href="#/receta/' + r.id + '"><span class="num">' + r.num + '</span><h3>' + esc(r.title) + '</h3><p>' + esc(r.short) + '</p><span class="tag">Ver receta →</span>' + (window.xmasBall ? window.xmasBall(r) : '') + '</a></li>';
   }
-  return '<li><div class="card soon"><span class="num">' + r.num + '</span><h3>' + esc(r.title) + '</h3><span class="tag">Próximamente</span></div></li>';
+  return '<li><div class="card soon"><span class="num">' + r.num + '</span><h3>' + esc(r.title) + '</h3><span class="tag">Próximamente</span>' + (window.xmasBall ? window.xmasBall(r) : '') + '</div></li>';
 }
 
 
@@ -199,8 +200,9 @@ function route() {
   var h = APP.querySelector('h1');
   if (h && h.focus) h.focus({ preventScroll: true });
   if (r) bindRecipe(r);
-  startSnow(document.getElementById('snowPage'), r ? 16 : 0);
-  if (!r) startSnow(APP.querySelector('.snow'), 18);
+  var xm = document.body.classList.contains('navidad');
+  startSnow(document.getElementById('snowPage'), r ? (xm ? 30 : 16) : 0);
+  if (!r) startSnow(APP.querySelector('.snow'), xm ? 46 : 18);
 }
 
 

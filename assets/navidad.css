@@ -1,0 +1,142 @@
+/* ============================================================
+   MODO NAVIDAD — se activa con el botón de la portada.
+   Todo cuelga de la clase «navidad» en <body>.
+   ============================================================ */
+
+/* ---- botón de activar ---- */
+.xmas-toggle{display:inline-flex;align-items:center;gap:.75rem;margin-top:1.6rem;min-height:48px;padding:.35rem 1.2rem .35rem .55rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--green);font:600 .92rem var(--sans);cursor:pointer;transition:border-color .2s,background .2s}
+.xmas-toggle:hover{border-color:var(--gold)}
+.xmas-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.xmas-toggle .sw{position:relative;flex:none;width:2.7rem;height:1.55rem;border-radius:999px;background:#d8d2c2;transition:background .25s}
+.xmas-toggle .sw::after{content:"";position:absolute;top:.2rem;left:.2rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .25s}
+.xmas-toggle[aria-checked="true"] .sw{background:#c8202f}
+.xmas-toggle[aria-checked="true"] .sw::after{transform:translateX(1.15rem)}
+.xmas-count,.xmas-scene{display:none}
+
+/* ---- tema ---- */
+body.navidad{--green:#14452f;--gold:#c99a3b;--gold-ink:#a4202d}
+body.navidad .top{position:relative;border-top-color:#a4202d}
+
+/* guirnalda de luces colgando de la cabecera */
+.xmas-lights{position:absolute;left:0;right:0;top:100%;height:34px;z-index:20;pointer-events:none;overflow:hidden}
+.xmas-lights i{position:absolute;inset:0;background-repeat:repeat-x;background-position:center top}
+.xmas-lights .l0{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%2234%22 viewBox=%220 0 160 34%22%3E%3Cpath d=%22M0 2Q20 12 40 2Q60 12 80 2Q100 12 120 2Q140 12 160 2%22 fill=%22none%22 stroke=%22%232a3a30%22 stroke-width=%221.6%22/%3E%3Crect x=%2218%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%2220%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23d8283b%22/%3E%3Cellipse cx=%2218.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Crect x=%2258%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%2260%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23f2b632%22/%3E%3Cellipse cx=%2258.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Crect x=%2298%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%22100%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%232f9d62%22/%3E%3Cellipse cx=%2298.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Crect x=%22138%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%22140%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23fff1c4%22/%3E%3Cellipse cx=%22138.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3C/svg%3E");opacity:.85}
+.xmas-lights .l1{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%2234%22 viewBox=%220 0 160 34%22%3E%3Ccircle cx=%2220%22 cy=%2217%22 r=%2211%22 fill=%22%23d8283b%22 opacity=%22.28%22/%3E%3Crect x=%2218%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%2220%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23d8283b%22/%3E%3Cellipse cx=%2218.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Ccircle cx=%22100%22 cy=%2217%22 r=%2211%22 fill=%22%232f9d62%22 opacity=%22.28%22/%3E%3Crect x=%2298%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%22100%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%232f9d62%22/%3E%3Cellipse cx=%2298.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3C/svg%3E");animation:xl 1.7s ease-in-out infinite}
+.xmas-lights .l2{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%2234%22 viewBox=%220 0 160 34%22%3E%3Ccircle cx=%2260%22 cy=%2217%22 r=%2211%22 fill=%22%23f2b632%22 opacity=%22.28%22/%3E%3Crect x=%2258%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%2260%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23f2b632%22/%3E%3Cellipse cx=%2258.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Ccircle cx=%22140%22 cy=%2217%22 r=%2211%22 fill=%22%23fff1c4%22 opacity=%22.28%22/%3E%3Crect x=%22138%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%22140%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23fff1c4%22/%3E%3Cellipse cx=%22138.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3C/svg%3E");animation:xl 1.7s ease-in-out -.85s infinite}
+@keyframes xl{0%,100%{opacity:1}50%{opacity:.12}}
+
+/* portada: noche de Belén */
+body.navidad .hero{padding:3.4rem 0 0;color:#fff8e6;background:
+  radial-gradient(1.6px 1.6px at 8% 18%,#fff,transparent),radial-gradient(1.2px 1.2px at 17% 42%,#ffe9a6,transparent),
+  radial-gradient(1.8px 1.8px at 27% 12%,#fff,transparent),radial-gradient(1.2px 1.2px at 36% 30%,#fff,transparent),
+  radial-gradient(1.6px 1.6px at 62% 14%,#fff,transparent),radial-gradient(1.2px 1.2px at 71% 36%,#ffe9a6,transparent),
+  radial-gradient(1.8px 1.8px at 83% 20%,#fff,transparent),radial-gradient(1.4px 1.4px at 92% 44%,#fff,transparent),
+  radial-gradient(1.2px 1.2px at 47% 8%,#fff,transparent),radial-gradient(1.4px 1.4px at 54% 38%,#ffe9a6,transparent),
+  linear-gradient(#0d1a35 0%,#1a2e58 52%,#244b52 100%)}
+body.navidad .hero .wrap{position:relative;z-index:1}
+body.navidad .hero h1{color:#fff8e6;text-shadow:0 2px 28px rgba(255,212,92,.4)}
+body.navidad .hero h1::before{content:"✦  Felices Fiestas  ✦";display:block;margin-bottom:.9rem;font:600 .8rem var(--sans);letter-spacing:.32em;text-transform:uppercase;color:#ffd45c;text-shadow:none}
+body.navidad .hero .sub{color:#eadfc3}
+body.navidad .hero .snow i{background:#fff;box-shadow:0 0 7px rgba(255,255,255,.85);animation-name:fallpage}
+body.navidad .xmas-toggle{background:rgba(255,248,230,.08);border-color:#ffd45c;color:#fff8e6}
+body.navidad .xmas-toggle .sw{background:rgba(255,255,255,.25)}
+body.navidad .xmas-toggle[aria-checked="true"] .sw{background:#d8283b}
+body.navidad .xmas-count{display:block;margin:1.1rem 0 0;font:italic 1.2rem var(--serif);color:#ffd45c}
+body.navidad .xmas-scene{display:block;position:relative;z-index:1;width:100%;max-width:880px;margin:1.4rem auto 0}
+body.navidad .xmas-scene svg{display:block;width:100%;height:auto;overflow:visible}
+.xs{transform-origin:center;transform-box:fill-box;animation:xstar 2.6s ease-in-out infinite}
+@keyframes xstar{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.75;transform:scale(1.12)}}
+.xglow{animation:xglow 3.4s ease-in-out infinite}
+@keyframes xglow{0%,100%{opacity:.85}50%{opacity:1}}
+
+
+/* recetas */
+body.navidad .r-head h1{color:#8c1c2a}
+body.navidad .kicker{color:#a4202d}
+body.navidad .scaler button[aria-pressed="true"]{background:#a4202d;border-color:#a4202d}
+body.navidad .steps li::before{color:#c99a3b}
+
+/* pie */
+body.navidad footer{background:linear-gradient(#7d1a26,#561019)}
+.foot-xmas{margin-top:.9rem}
+
+@media(max-width:520px){
+  body.navidad .hero{padding-top:2.4rem}
+  body.navidad .hero h1::before{letter-spacing:.22em;font-size:.72rem}
+  .xmas-toggle{margin-top:1.3rem}
+}
+
+/* ============================================================
+   RECETAS COMO BOLAS DE NAVIDAD, colgadas de una rama
+   (usa las mismas tarjetas de siempre; solo cambia el aspecto)
+   ============================================================ */
+body.navidad .hero + section{position:relative;margin-top:0;padding:3.2rem 1.25rem 4rem;background:#0f3024;box-shadow:0 0 0 100vmax #0f3024;clip-path:inset(0 -100vmax);
+  background-image:radial-gradient(1.4px 1.4px at 12% 22%,rgba(255,233,166,.7),transparent),radial-gradient(1.2px 1.2px at 78% 12%,rgba(255,255,255,.6),transparent),radial-gradient(1.4px 1.4px at 44% 66%,rgba(255,233,166,.5),transparent),radial-gradient(1.2px 1.2px at 91% 58%,rgba(255,255,255,.5),transparent),radial-gradient(1.2px 1.2px at 24% 90%,rgba(255,233,166,.5),transparent)}
+body.navidad .hero + section::before{content:"Elige una bola de Navidad";display:block;margin:0 0 2.6rem;text-align:center;font:italic 1.5rem var(--serif);color:#ffe9a6}
+body.navidad .cards{margin:0;gap:2.2rem 1.2rem;grid-template-columns:repeat(3,1fr)}
+body.navidad .cards li{position:relative;padding-top:0;min-width:0}
+/* la rama de pino de la que cuelgan */
+body.navidad .cards li::before{content:"";position:absolute;top:0;left:-.7rem;right:-.7rem;height:9px;border-radius:5px;
+  background:repeating-linear-gradient(90deg,#1f6a47 0 9px,#17543a 9px 18px);box-shadow:0 2px 0 #0a2118,0 0 0 1px rgba(255,212,92,.25)}
+body.navidad .cards li:nth-child(odd){--th:38px}
+body.navidad .cards li:nth-child(even){--th:76px}
+
+body.navidad .card{--tx:#fff8e6;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;
+  width:min(100%,230px);height:auto;aspect-ratio:1;margin:var(--th) auto 0;padding:14% 12% 12%;text-align:center;color:var(--tx);
+  border:0;border-radius:50%;
+  background:radial-gradient(circle at 28% 22%,rgba(255,255,255,.85) 0 4%,rgba(255,255,255,.35) 9%,transparent 21%),radial-gradient(circle at 34% 30%,var(--b1),var(--b2) 56%,var(--b3) 100%);
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.18),inset 0 -12px 22px rgba(0,0,0,.12),0 16px 28px -12px rgba(0,0,0,.55);
+  transform-origin:50% calc(var(--th) * -1);animation:xswing 5.2s ease-in-out infinite;transition:box-shadow .25s,filter .25s}
+body.navidad .cards li:nth-child(2n) .card{animation-duration:6.1s;animation-delay:-1.7s}
+body.navidad .cards li:nth-child(3n) .card{animation-duration:4.7s;animation-delay:-3.1s}
+@keyframes xswing{0%,100%{transform:rotate(-2.6deg)}50%{transform:rotate(2.6deg)}}
+/* hilo y casquillo dorado */
+body.navidad .card::before{content:"";position:absolute;left:calc(50% - 1px);bottom:calc(100% - 4px);width:2px;height:calc(var(--th) - 4px);background:linear-gradient(#f0d27a,#b8913a)}
+body.navidad .card::after{content:"";position:absolute;top:-14px;left:calc(50% - 14px);width:28px;height:19px;border-radius:6px 6px 3px 3px;background:linear-gradient(90deg,#a87f2c,#f4d783 45%,#a87f2c);box-shadow:0 2px 3px rgba(0,0,0,.35)}
+body.navidad .card .num{font:italic 1.15rem var(--serif);color:rgba(255,233,166,.95);line-height:1}
+body.navidad .card h3{margin:.1rem 0 .2rem;font:400 clamp(.92rem,2.4vw,1.28rem)/1.15 var(--serif);color:var(--tx);text-shadow:0 1px 2px rgba(0,0,0,.35)}
+body.navidad .card p{display:none}
+body.navidad .card .tag{font-size:.62rem;letter-spacing:.14em;color:var(--tx);opacity:.9}
+body.navidad a.card:hover,body.navidad a.card:focus-visible{animation-play-state:paused;transform:rotate(0) scale(1.05);box-shadow:inset 0 0 0 4px rgba(255,255,255,.1),inset 0 -16px 26px rgba(0,0,0,.25),0 0 0 3px rgba(255,212,92,.65),0 0 34px 6px rgba(255,212,92,.35),0 18px 30px -12px rgba(0,0,0,.65)}
+body.navidad a.card:focus-visible{outline:0}
+/* colores */
+body.navidad .cards li:nth-child(6n+1) .card{--b1:#ff8a94;--b2:#f03c4d;--b3:#b81f30}
+body.navidad .cards li:nth-child(6n+2) .card{--b1:#7be3ae;--b2:#2fb877;--b3:#17874f}
+body.navidad .cards li:nth-child(6n+3) .card{--b1:#fff0b0;--b2:#f6c354;--b3:#d99a26;--tx:#3a2608}
+body.navidad .cards li:nth-child(6n+3) .card .num{color:#6b4410}
+body.navidad .cards li:nth-child(6n+4) .card{--b1:#ffffff;--b2:#f1ecdd;--b3:#c7bfa8;--tx:#3a3a30}
+body.navidad .cards li:nth-child(6n+4) .card .num{color:#7a5a1f}
+body.navidad .cards li:nth-child(6n+5) .card{--b1:#f08fb0;--b2:#d4457a;--b3:#9a2358}
+body.navidad .cards li:nth-child(6n+6) .card{--b1:#9cc0ff;--b2:#4f7bdc;--b3:#2f56b0}
+
+/* el texto escrito sobre la bola */
+.ball-svg{display:none}
+body.navidad .ball-svg{display:block;position:absolute;inset:0;pointer-events:none}
+body.navidad .ball-svg svg{display:block;width:100%;height:100%;overflow:visible}
+body.navidad .card .num,body.navidad .card h3,body.navidad .card .tag{position:absolute;width:1px;height:1px;margin:0;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+body.navidad .ball-svg text{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;fill:var(--tx)}
+body.navidad .ball-svg .bt{filter:drop-shadow(0 1px 1.2px rgba(0,0,0,.3))}
+body.navidad .ball-svg .bn{font-style:italic;fill:rgba(255,246,214,.95)}
+body.navidad .cards li:nth-child(6n+3) .ball-svg .bn{fill:#7a4d0c}
+body.navidad .cards li:nth-child(6n+4) .ball-svg .bn{fill:#8a6a24}
+body.navidad .ball-svg .bg{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:600;letter-spacing:1.6px;opacity:.92}
+/* las que aún no están: bolas más suaves */
+body.navidad .card.soon{filter:saturate(.8);animation-duration:7s;cursor:default}
+
+@media(max-width:700px){
+  body.navidad .hero + section{padding:2.6rem .9rem 3rem}
+  body.navidad .hero + section::before{font-size:1.3rem;margin-bottom:2rem}
+  body.navidad .cards{grid-template-columns:repeat(2,1fr);gap:1.8rem .9rem}
+  body.navidad .cards li::before{left:-.45rem;right:-.45rem}
+  body.navidad .cards li:nth-child(odd){--th:30px}
+  body.navidad .cards li:nth-child(even){--th:60px}
+  body.navidad .card{padding:13% 9% 11%}
+}
+@media(prefers-reduced-motion:reduce){
+  body.navidad .card{animation:none}
+  .xmas-lights i,.xs,.xglow{animation:none}
+  .xmas-lights .l1,.xmas-lights .l2{opacity:1}
+}
+@media print{.xmas-lights,.xmas-scene,.xmas-toggle,.xmas-count,.foot-xmas{display:none}}
+
+body.navidad main:has(.hero){background:#0f3024}
