@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ---- botón de activar ---- */
-.xmas-toggle{display:inline-flex;align-items:center;gap:.75rem;margin-top:1.6rem;min-height:48px;padding:.35rem 1.2rem .35rem .55rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--green);font:600 .92rem var(--sans);cursor:pointer;transition:border-color .2s,background .2s}
+.xmas-toggle{display:inline-flex;align-items:center;gap:.75rem;margin:0;min-height:48px;flex:none;padding:.35rem 1.2rem .35rem .55rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--green);font:600 .92rem var(--sans);cursor:pointer;transition:border-color .2s,background .2s}
 .xmas-toggle:hover{border-color:var(--gold)}
 .xmas-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .xmas-toggle .sw{position:relative;flex:none;width:2.7rem;height:1.55rem;border-radius:999px;background:#d8d2c2;transition:background .25s}
@@ -18,7 +18,7 @@ body.navidad{--green:#14452f;--gold:#c99a3b;--gold-ink:#a4202d}
 body.navidad .top{position:relative;border-top-color:#a4202d}
 
 /* guirnalda de luces colgando de la cabecera */
-.xmas-lights{position:absolute;left:0;right:0;top:100%;height:34px;z-index:20;pointer-events:none;overflow:hidden}
+.xmas-lights{position:absolute;left:0;right:0;top:100%;height:34px;z-index:1;pointer-events:none;overflow:hidden}
 .xmas-lights i{position:absolute;inset:0;background-repeat:repeat-x;background-position:center top}
 .xmas-lights .l0{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%2234%22 viewBox=%220 0 160 34%22%3E%3Cpath d=%22M0 2Q20 12 40 2Q60 12 80 2Q100 12 120 2Q140 12 160 2%22 fill=%22none%22 stroke=%22%232a3a30%22 stroke-width=%221.6%22/%3E%3Crect x=%2218%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%2220%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23d8283b%22/%3E%3Cellipse cx=%2218.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Crect x=%2258%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%2260%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23f2b632%22/%3E%3Cellipse cx=%2258.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Crect x=%2298%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%22100%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%232f9d62%22/%3E%3Cellipse cx=%2298.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Crect x=%22138%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%22140%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23fff1c4%22/%3E%3Cellipse cx=%22138.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3C/svg%3E");opacity:.85}
 .xmas-lights .l1{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%2234%22 viewBox=%220 0 160 34%22%3E%3Ccircle cx=%2220%22 cy=%2217%22 r=%2211%22 fill=%22%23d8283b%22 opacity=%22.28%22/%3E%3Crect x=%2218%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%2220%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%23d8283b%22/%3E%3Cellipse cx=%2218.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3Ccircle cx=%22100%22 cy=%2217%22 r=%2211%22 fill=%22%232f9d62%22 opacity=%22.28%22/%3E%3Crect x=%2298%22 y=%226%22 width=%224%22 height=%225%22 rx=%221%22 fill=%22%232a3a30%22/%3E%3Cellipse cx=%22100%22 cy=%2217%22 rx=%224.6%22 ry=%226.6%22 fill=%22%232f9d62%22/%3E%3Cellipse cx=%2298.6%22 cy=%2214.8%22 rx=%221.2%22 ry=%222%22 fill=%22%23fff%22 opacity=%22.55%22/%3E%3C/svg%3E");animation:xl 1.7s ease-in-out infinite}
@@ -38,8 +38,7 @@ body.navidad .hero h1{color:#fff8e6;text-shadow:0 2px 28px rgba(255,212,92,.4)}
 body.navidad .hero h1::before{content:"✦  Felices Fiestas  ✦";display:block;margin-bottom:.9rem;font:600 .8rem var(--sans);letter-spacing:.32em;text-transform:uppercase;color:#ffd45c;text-shadow:none}
 body.navidad .hero .sub{color:#eadfc3}
 body.navidad .hero .snow i{background:#fff;box-shadow:0 0 7px rgba(255,255,255,.85);animation-name:fallpage}
-body.navidad .xmas-toggle{background:rgba(255,248,230,.08);border-color:#ffd45c;color:#fff8e6}
-body.navidad .xmas-toggle .sw{background:rgba(255,255,255,.25)}
+body.navidad .xmas-toggle{border-color:#d8b04a}
 body.navidad .xmas-toggle[aria-checked="true"] .sw{background:#d8283b}
 body.navidad .xmas-count{display:block;margin:1.1rem 0 0;font:italic 1.2rem var(--serif);color:#ffd45c}
 body.navidad .xmas-scene{display:block;position:relative;z-index:1;width:100%;max-width:880px;margin:1.4rem auto 0}
@@ -63,7 +62,7 @@ body.navidad footer{background:linear-gradient(#7d1a26,#561019)}
 @media(max-width:520px){
   body.navidad .hero{padding-top:2.4rem}
   body.navidad .hero h1::before{letter-spacing:.22em;font-size:.72rem}
-  .xmas-toggle{margin-top:1.3rem}
+  .xmas-toggle{gap:.55rem;padding:.3rem .9rem .3rem .45rem;font-size:.82rem}
 }
 
 /* ============================================================
@@ -140,3 +139,6 @@ body.navidad .card.soon{filter:saturate(.8);animation-duration:7s;cursor:default
 @media print{.xmas-lights,.xmas-scene,.xmas-toggle,.xmas-count,.foot-xmas{display:none}}
 
 body.navidad main:has(.hero){background:#0f3024}
+
+/* el logo sobresale sobre el cielo oscuro: le damos un fondo crema redondo para que se lea */
+body.navidad .brand img{background:#fbf7ef;border-radius:50%;box-shadow:0 3px 10px rgba(0,0,0,.35)}

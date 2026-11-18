@@ -19,10 +19,10 @@ h1:focus{outline:none}
 .skip:focus{left:0}
 
 /* cabecera */
-.top{border-top:4px solid var(--green);background:var(--paper);border-bottom:1px solid var(--line)}
+.top{position:relative;z-index:6;border-top:4px solid var(--green);background:var(--paper);border-bottom:1px solid var(--line)}
 .top-in{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.45rem;padding-bottom:.45rem}
-.brand{display:inline-flex;align-items:center;line-height:0}
-.brand img{display:block;width:56px;height:56px}
+.brand{display:block;position:relative;z-index:30;align-self:flex-start;height:56px;width:128px;line-height:0}
+.brand img{position:absolute;left:0;top:0;display:block;width:128px;height:128px;filter:drop-shadow(0 3px 5px rgba(0,0,0,.18))}
 .top nav a{font:italic 1.05rem var(--serif);color:var(--gold-ink);text-decoration:none}
 
 /* adorno */
@@ -161,10 +161,10 @@ footer a{color:#e9e2d0}
 @media(max-width:520px){
   body{font-size:16px;line-height:1.6}
   .top-in{padding-top:.5rem;padding-bottom:.5rem}
-  .brand,.top nav a{display:inline-flex;align-items:center;min-height:44px}
-  .brand img{width:48px;height:48px}
+  .brand{height:52px;width:96px}
+  .brand img{width:96px;height:96px}
   .top nav a{font-size:1rem}
-  .hero{padding:2.6rem 0 1.4rem}
+  .hero{padding:3.6rem 0 1.4rem}
   .sub{font-size:1.12rem}
   .cards{gap:.8rem;margin-bottom:3rem}
   .card{padding:1.2rem 1.2rem 1.1rem}

@@ -30,10 +30,7 @@
 
   /* ---- piezas de la portada ---- */
   window.xmasToggle = function () {
-    var on = document.body.classList.contains('navidad');
-    return '<button type="button" class="xmas-toggle" role="switch" aria-checked="' + on + '" data-xmas>' +
-      '<span class="sw" aria-hidden="true"></span><span>Modo Navidad</span></button>' +
-      '<p class="xmas-count" aria-live="polite">' + countText() + '</p>';
+    return '<p class="xmas-count" aria-live="polite">' + countText() + '</p>';
   };
 
   /* quién está en el belén según la fecha: el Niño llega en Nochebuena y los Reyes el 6 de enero */
