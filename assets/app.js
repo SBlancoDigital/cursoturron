@@ -156,7 +156,7 @@ function recipeView(r) {
   return '<article class="wrap narrow recipe">' +
     '<a class="back" href="#/">← Todas las recetas</a>' +
     '<header class="r-head"><p class="kicker">Receta ' + r.num + '</p><h1 tabindex="-1">' + esc(r.title) + '</h1>' +
-    '<p class="lead">' + esc(r.lead) + '</p>' + ORN +
+    (r.lead ? '<p class="lead">' + esc(r.lead) + '</p>' : '') + ORN +
     (r.meta && r.meta.length ? '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' : '') +
     '<button class="print" type="button" data-print>Imprimir receta</button>' + scalerView() + '</header>' +
     '<section><h2>Ingredientes</h2>' + r.ingredients.map(ingredientBlock).join('') + '</section>' +
