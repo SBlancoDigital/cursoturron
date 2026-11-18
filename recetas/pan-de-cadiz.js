@@ -4,7 +4,6 @@
     id: 'pan-de-cadiz', num: '01', ready: true,
     title: 'Pan de Cádiz',
     short: 'Mazapán de almendra en cuatro capas: limón, nueces, yema y chocolate.',
-    lead: 'Un bloque de mazapán de almendra en cuatro capas: limón con fruta confitada, nueces, yema y chocolate. Se prepara una única base de mazapán, que se mantiene caliente mientras se montan las capas una a una en un molde forrado de film y canela.',
     meta: [],
     stack: {
       label: 'Capas del molde, de arriba abajo: chocolate, tiras de fruta confitada, yema, naranja confitada y cerezas, nueces, limón',
