@@ -19,9 +19,9 @@
     },
     ingredients: [
       { heading: 'Mazapán base', groups: [
-        { title: 'Primera parte', items: [['Nata para montar', '50 g'], ['Leche condensada', '50 g'], ['Chocolate blanco', '90 g']] },
-        { title: 'Segunda parte', items: [['Harina de almendra', '580 g'], ['Azúcar en grano', '125 g'], ['Patata bien escurrida, pesada en crudo', '75 g']] },
-        { title: 'Jarabe', items: [['Azúcar', '500 g'], ['Agua', '100 g'], ['Glucosa (sirope)', '125 g']] }
+        { n: 1, title: 'Primera parte', items: [['Nata para montar', '50 g'], ['Leche condensada', '50 g'], ['Chocolate blanco', '90 g']] },
+        { n: 2, title: 'Segunda parte', items: [['Harina de almendra', '580 g'], ['Azúcar en grano', '125 g'], ['Patata bien escurrida, pesada en crudo', '75 g']] },
+        { n: 3, title: 'Jarabe', items: [['Azúcar', '500 g'], ['Agua', '100 g'], ['Glucosa (sirope)', '125 g']] }
       ]},
       { heading: 'Las cuatro capas', intro: 'Cada capa lleva 400 g de mazapán base.', cols: 2, groups: [
         { title: 'Limón', items: [['Licor seco (ron, whisky, vodka…)', '6 gotas'], ['Colorante', 'por confirmar'], ['Pasta de limón', '20 g'], ['Fruta confitada en dados', '80 g']] },
@@ -42,9 +42,9 @@
       ]}
     ],
     prep: [
-      ['Primera parte', 'Funde e integra la nata para montar (50 g), la leche condensada (50 g) y el chocolate blanco (90 g), siempre en este orden: primero la nata, luego la leche condensada y al final el chocolate, para que no se pegue. El fundido se hace en el microondas en tandas de 1 minuto, o al baño maría.'],
-      ['Segunda parte', 'Mezcla la harina de almendra (580 g), el azúcar en grano (125 g) y la patata (75 g, bien escurrida pero pesada en crudo). Une esta mezcla con la de la primera parte.'],
-      ['Jarabe', 'Cuece 500 g de azúcar con 100 g de agua y 125 g de glucosa (sirope) hasta 126\u00a0°C. Hay que esperar un buen rato hasta que la temperatura suba a 126\u00a0°C.'],
+      ['Primera parte', 'Funde e integra la nata para montar (50 g), la leche condensada (50 g) y el chocolate blanco (90 g), siempre en este orden: primero la nata, luego la leche condensada y al final el chocolate, para que no se pegue. El fundido se hace en el microondas en tandas de 1 minuto, o al baño maría.', 1],
+      ['Segunda parte', 'Mezcla la harina de almendra (580 g), el azúcar en grano (125 g) y la patata (75 g, bien escurrida pero pesada en crudo). Une esta mezcla con la de la primera parte.', 2],
+      ['Jarabe', 'Cuece 500 g de azúcar con 100 g de agua y 125 g de glucosa (sirope) hasta 126\u00a0°C. Hay que esperar un buen rato hasta que la temperatura suba a 126\u00a0°C.', 3],
       ['Hueco para el jarabe', 'Pega la mezcla de la segunda parte a las paredes del bol, dejando un hueco en el centro donde se verterá el jarabe. Calienta el bol por fuera con un secador de pelo para que la masa no se pegue.'],
       ['Incorporar el jarabe', 'Ve añadiendo el jarabe poco a poco, para que no salpique, y mezcla.'],
       ['Punto', 'La masa está lista cuando deja de pegarse al bol. Ese es el mazapán base.'],

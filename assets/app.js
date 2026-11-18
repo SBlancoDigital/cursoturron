@@ -57,8 +57,11 @@ function ingList(items) {
   }).join('') + '</ul>';
 }
 
+function badge(n) { return '<span class="mix-n m' + n + '" aria-hidden="true">' + n + '</span>'; }
+
 function group(g) {
-  return '<div class="grp"><h4>' + esc(g.title) + '</h4>' +
+  return '<div class="grp' + (g.n ? ' mix m' + g.n : '') + '"><h4>' +
+    (g.n ? badge(g.n) + '<span class="vh">Mezcla ' + g.n + ': </span>' : '') + esc(g.title) + '</h4>' +
     (g.note ? '<p class="note">' + esc(g.note) + '</p>' : '') +
     (g.items ? ingList(g.items) : '') +
     (g.text ? '<p>' + esc(g.text) + '</p>' : '') + '</div>';
@@ -72,7 +75,7 @@ function ingredientBlock(b) {
 
 function steps(list) {
   return '<ol class="steps">' + list.map(function (s) {
-    return '<li><div><strong>' + esc(s[0]) + '</strong><p>' + esc(s[1]) + '</p></div></li>';
+    return '<li><div><strong>' + (s[2] ? badge(s[2]) : '') + esc(s[0]) + '</strong><p>' + esc(s[1]) + '</p></div></li>';
   }).join('') + '</ol>';
 }
 

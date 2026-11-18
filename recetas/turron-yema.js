@@ -9,22 +9,22 @@
   assemblyTitle: 'Molde y reposo',
   ingredients: [
     { heading: 'Mazapán', cols: 2, groups: [
-      { title: 'Primera parte', note: 'Importante: en este orden.', items: [['Nata para montar', '65 g'], ['Leche condensada', '65 g'], ['Chocolate blanco', '65 g']] },
-      { title: 'Segunda parte', note: 'La vainilla va en esta mezcla: así se integra muy bien.', items: [['Harina de almendra', '580 g'], ['Azúcar', '125 g'], ['Patata', '75 g'], ['Vainilla azucarada', '1 tubo']] },
-      { title: 'Yema', note: 'Receta de la yema dura: la del Pan de Cádiz (por confirmar).', items: [['Yema dura', '150 g']] },
-      { title: 'Jarabe', note: 'Con termómetro de caramelo, sin menearlo, hasta 126 °C.', items: [['Azúcar', '500 g'], ['Agua', 'por confirmar'], ['Glucosa (sirope)', '125 g'], ['Colorante de huevo', 'por confirmar']] }
+      { n: 1, title: 'Primera parte', note: 'Importante: en este orden.', items: [['Nata para montar', '65 g'], ['Leche condensada', '65 g'], ['Chocolate blanco', '65 g']] },
+      { n: 2, title: 'Segunda parte', note: 'La vainilla va en esta mezcla: así se integra muy bien.', items: [['Harina de almendra', '580 g'], ['Azúcar', '125 g'], ['Patata', '75 g'], ['Vainilla azucarada', '1 tubo']] },
+      { n: 3, title: 'Jarabe', note: 'Con termómetro de caramelo, sin menearlo, hasta 126 °C.', items: [['Azúcar', '500 g'], ['Agua', 'por confirmar'], ['Glucosa (sirope)', '125 g'], ['Colorante de huevo', 'por confirmar']] },
+      { title: 'Yema', note: 'Receta de la yema dura: la del Pan de Cádiz (por confirmar).', items: [['Yema dura', '150 g']] }
     ]},
     { heading: 'Además', groups: [
       { title: 'Para el molde', text: 'Papel de horno y canela en polvo.' }
     ]}
   ],
   prep: [
-    ['Mezcla 1', 'Prepara la nata para montar (65 g), la leche condensada (65 g) y el chocolate blanco (65 g), importante en este orden.'],
-    ['Mezcla 2', 'Mezcla la harina de almendra (580 g), el azúcar (125 g), la patata (75 g) y la vainilla azucarada (1 tubo). La vainilla va en esta mezcla porque así se integra muy bien.'],
+    ['Mezcla 1', 'Prepara la nata para montar (65 g), la leche condensada (65 g) y el chocolate blanco (65 g), importante en este orden.', 1],
+    ['Mezcla 2', 'Mezcla la harina de almendra (580 g), el azúcar (125 g), la patata (75 g) y la vainilla azucarada (1 tubo). La vainilla va en esta mezcla porque así se integra muy bien.', 2],
     ['Unir', 'Añade la mezcla 1 a la mezcla 2.'],
     ['Volcán', 'Haz un volcán, un hueco en el centro, para poner dentro la mezcla del azúcar. Enchufa el secador para calentar el recipiente.'],
     ['Molde', 'Forra el molde con papel de horno: se dobla y se cortan las esquinas, como en el dibujo de los apuntes. Ponlo dentro del molde y espolvoréalo de canela.'],
-    ['Jarabe', 'Cuece 500 g de azúcar con el agua y 125 g de glucosa hasta 126 °C, con un termómetro de caramelo y sin menearlo. El colorante de huevo se añade aquí: tiene un color de caramelo poco intenso.'],
+    ['Jarabe', 'Cuece 500 g de azúcar con el agua y 125 g de glucosa hasta 126 °C, con un termómetro de caramelo y sin menearlo. El colorante de huevo se añade aquí: tiene un color de caramelo poco intenso.', 3],
     ['Incorporar el jarabe', 'Cuando el cuenco está caliente y la mezcla de azúcar, glucosa y colorante está a 126 °C, añádela poco a poco, nunca de golpe, porque salpicaría y podría solidificarse sin querer.'],
     ['Yemas', 'Añade las yemas (150 g de yema dura) y sigue meneando hasta que la masa no se pegue.']
   ],
