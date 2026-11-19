@@ -67,6 +67,13 @@
         ['Añadir el almíbar', 'Cuando la almendra esté caliente y el almíbar esté listo, añádelo e intégralo. La masa debe quedar manejable y blandita.'],
         ['Añadir el jarabe', 'Cuando la otra mezcla (el jarabe) esté a 115\u00a0°C, añádela. Mézclalo bien, baja los bordes y menea hasta que pierda un poco de temperatura.'],
         ['Reposo', 'Pon un rollo de film estirado, muy grande, o dos. Coloca la mezcla encima formando un cuadrado y tápalo muy bien, para que no se seque mientras se enfría.']
+      ]},
+      { title: 'Al día siguiente: cortar las piezas y decorar', photo: { src: 'assets/img/pan-de-cadiz-decorado.jpg', alt: 'Pan de Cádiz decorado con una estrella, lunas, gotas y medios círculos de mazapán rayado', caption: 'Así queda: estrella en el centro, lunas y gotas por encima y medios círculos por el borde de abajo.' }, steps: [
+        ['Dar forma de cilindro', 'Amasa la masa solo lo justo, a mano, para darle forma de cilindro.'],
+        ['Aplanar', 'Aplánala entre dos papeles de horno hasta que tenga el grosor de dos monedas de 1\u00a0€, una encima de otra.'],
+        ['Hacer el patrón', 'Dibuja el patrón en papel, ponlo encima de la masa y córtala siguiendo el contorno. Se cortan estrellas, lunas, gotas y medios círculos para el borde de abajo.'],
+        ['Pintar y pegar', 'Pinta el pan de Cádiz con licor seco (ron, whisky, vodka...), bien mojado pero sin que quede ningún charco. Pinta también por detrás cada pieza cortada, para asegurarte de que se pega, y colócala.'],
+        ['Secar', 'Deja que se seque.']
       ]}
     ],
     confit: ['Naranja confitada', 'Va sobre la capa de nueces, junto con cerezas confitadas. Cuece los gajos tres veces, 5 minutos cada vez, tirando el agua y poniéndolos con agua fría en cada ocasión. Cantidades de la receta: 1 kg de naranja, 500 g de azúcar y 250 g de agua.'],
@@ -90,7 +97,9 @@
       'Cómo se cuece la patata antes de escurrirla.',
       'Qué fruta es cada tira confitada y cuánta se usa.',
       'Medidas exactas del molde, reposo antes de desmoldar y cómo se corta.',
-      'Pasos que faltan del segundo día (forrar el bloque con el mazapán de forro, hornear y decorar) y del sábado (acabar, cortar y presentar).'
+      'Si la masa de la decoración es el mismo mazapán de forro, y cómo se hace el rayado de las piezas.',
+      'Cuánto tiempo hay que dejar secar la decoración.',
+      'Pasos que faltan del segundo día (forrar el bloque con el mazapán de forro y hornear) y del sábado (acabar, cortar y presentar).'
     ]
   }
 );

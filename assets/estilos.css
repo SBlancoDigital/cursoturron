@@ -122,6 +122,9 @@ h3.sub{margin:2.2rem 0 .2rem;font:italic 1.3rem var(--serif);color:var(--gold-in
 .lay.nuez{background:#e8d8b8;color:#51442a}
 .lay.limon{background:#efe6a8;color:#58531d}
 .fr{padding:.32rem 1rem;text-align:center;font-size:.76rem;letter-spacing:.06em;color:var(--gold-ink);border:1px dashed var(--gold);border-radius:2px;background:#fff}
+.photo{margin:0 auto 1.6rem;max-width:420px;text-align:center}
+.photo img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+.photo figcaption{margin-top:.5rem;color:var(--muted);font-size:.88rem}
 .stack-cap{margin:0 0 2rem;text-align:center;color:var(--muted);font-size:.85rem}
 .aside{margin:1.6rem 0 0;padding:1.1rem 1.3rem;border-left:2px solid var(--gold);background:#fff}
 .aside strong{display:block;margin-bottom:.2rem;font:600 .78rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
