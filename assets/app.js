@@ -154,7 +154,6 @@ function recipeView(r) {
     (next ? '<a href="#/receta/' + next.id + '">' + esc(next.title) + ' →</a>' : '') + '</span></nav>';
 
   return '<article class="wrap narrow recipe">' +
-    '<a class="back" href="#/">← Todas las recetas</a>' +
     '<header class="r-head"><p class="kicker">Receta ' + r.num + '</p><h1 tabindex="-1">' + esc(r.title) + '</h1>' +
     (r.lead ? '<p class="lead">' + esc(r.lead) + '</p>' : '') + ORN +
     (r.meta && r.meta.length ? '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' : '') +
@@ -195,6 +194,8 @@ function route() {
   if (!r || r.id !== LAST) SCALE = 1;
   LAST = r ? r.id : null;
   APP.innerHTML = r ? recipeView(r) : homeView();
+  var bt = document.querySelector('.back-top');
+  if (bt) bt.hidden = !r;
   document.title = (r ? r.title + ' · ' : '') + 'Curso de turrón artesano · Silvia Blanco';
   window.scrollTo(0, 0);
   var h = APP.querySelector('h1');

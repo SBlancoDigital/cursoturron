@@ -57,7 +57,11 @@ a.card:hover{border-color:var(--gold);box-shadow:0 8px 26px -16px rgba(29,58,46,
 .recipe{padding-bottom:3.5rem}
 .back{display:inline-block;margin-top:1.6rem;font-size:.92rem;color:var(--gold-ink);text-decoration:none}
 .back:hover{text-decoration:underline}
-.recipe .back{margin-left:148px}
+.top-in{position:relative}
+.back-top{position:absolute;left:calc(128px + 1rem);top:calc(100% + 40px);z-index:30;font-size:.92rem;color:var(--gold-ink);text-decoration:none}
+.back-top[hidden]{display:none}
+.back-top:hover{text-decoration:underline}
+.recipe{padding-top:1.4rem}
 .r-head{text-align:center;padding:1.6rem 0 .6rem}
 .lead{margin:1.1rem auto 0;max-width:34em;font:italic 1.2rem/1.55 var(--serif);color:#44504a}
 .meta{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:0 0 1rem;padding:0}
@@ -172,7 +176,8 @@ footer a{color:#e9e2d0}
   a.card:active{border-color:var(--gold);background:#fffdf8}
   .back{display:inline-flex;align-items:center;min-height:44px;margin-top:.6rem;font-size:1rem}
   .r-head{padding-top:.8rem}
-  .recipe .back{margin-left:112px}
+  .back-top{left:calc(96px + .8rem);top:calc(100% + 18px);font-size:1rem;display:inline-flex;align-items:center;min-height:44px}
+  .recipe{padding-top:3.6rem}
   .lead{font-size:1.1rem}
   .print{min-height:44px;padding:0 .4rem;font-size:.95rem}
   .recipe section{margin-top:2.6rem}
