@@ -154,10 +154,10 @@ function recipeView(r) {
     (next ? '<a href="#/receta/' + next.id + '">' + esc(next.title) + ' →</a>' : '') + '</span></nav>';
 
   return '<article class="wrap narrow recipe">' +
-    '<header class="r-head"><p class="kicker">Receta ' + r.num + '</p><h1 tabindex="-1">' + esc(r.title) + '</h1>' +
+    '<header class="r-head"><h1 tabindex="-1">' + esc(r.title) + '</h1><p class="kicker">Receta ' + r.num + '</p>' +
     (r.lead ? '<p class="lead">' + esc(r.lead) + '</p>' : '') + ORN +
     (r.meta && r.meta.length ? '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' : '') +
-    '<button class="print" type="button" data-print>Imprimir receta</button>' + scalerView() + '</header>' +
+    '<div class="r-tools">' + scalerView() + '<button class="print" type="button" data-print>Imprimir receta</button></div></header>' +
     '<section><h2>Ingredientes</h2>' + r.ingredients.map(ingredientBlock).join('') + '</section>' +
     '<section><h2>' + esc(r.prepTitle || 'Preparación del mazapán base') + '</h2>' + steps(r.prep) + '</section>' +
     '<section><h2>' + esc(r.assemblyTitle || 'Montaje de las capas') + '</h2>' + (r.stack ? stack(r.stack) : '') + steps(r.assembly) +
