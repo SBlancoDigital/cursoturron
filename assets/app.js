@@ -160,8 +160,8 @@ function recipeView(r) {
     '<div class="r-tools">' + scalerView() + '<button class="print" type="button" data-print>Imprimir receta</button></div></header>' +
     '<section><h2>Ingredientes</h2>' + r.ingredients.map(ingredientBlock).join('') + '</section>' +
     '<section><h2>' + esc(r.prepTitle || 'Preparación del mazapán base') + '</h2>' + steps(r.prep) + '</section>' +
-    '<section><h2>' + esc(r.assemblyTitle || 'Montaje de las capas') + '</h2>' + (r.stack ? stack(r.stack) : '') + steps(r.assembly) +
-    (r.confit ? '<div class="aside"><strong>' + esc(r.confit[0]) + '</strong><p>' + esc(sc(r.confit[1])) + '</p></div>' : '') + '</section>' +
+    ((r.assembly || r.stack || r.confit) ? '<section><h2>' + esc(r.assemblyTitle || 'Montaje de las capas') + '</h2>' + (r.stack ? stack(r.stack) : '') + (r.assembly ? steps(r.assembly) : '') +
+    (r.confit ? '<div class="aside"><strong>' + esc(r.confit[0]) + '</strong><p>' + esc(sc(r.confit[1])) + '</p></div>' : '') + '</section>' : '') +
     (r.extra || []).map(function (x) { return '<section><h2>' + esc(x.title) + '</h2>' + (x.photo ? '<figure class="photo"><img src="' + esc(x.photo.src) + '" alt="' + esc(x.photo.alt) + '" loading="lazy"><figcaption>' + esc(x.photo.caption) + '</figcaption></figure>' : '') + steps(x.steps) + '</section>'; }).join('') +
     (r.tips && r.tips.length ? '<section><h2>Trucos del curso</h2><ul class="tips">' +
     r.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + esc(sc(t[1])) + '</li>'; }).join('') + '</ul></section>' : '') +
