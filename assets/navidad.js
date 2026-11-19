@@ -53,13 +53,15 @@
         '<rect x="9" y="40" width="12" height="2.2" fill="#ffd45c"/><rect x="14.4" y="36" width="2.2" height="11" fill="#ffd45c"/>' +
         '</g>';
     };
-    var oveja = function (x, y, k) {
+    var oveja = function (x, y, k, d, dur, delay) {
+      /* la oveja camina hacia la izquierda d unidades y vuelve girada, sin parar */
       return '<g transform="translate(' + x + ' ' + y + ') scale(' + k + ')">' +
+        '<g class="xw" style="--d:' + d + 'px;animation-duration:' + dur + 's;animation-delay:-' + delay + 's"><g class="xb" style="animation-delay:-' + (delay % 1.2).toFixed(2) + 's">' +
         '<ellipse cx="0" cy="0" rx="15" ry="10" fill="#f4efe2"/>' +
         '<circle cx="-9" cy="-5" r="7" fill="#f4efe2"/><circle cx="8" cy="-6" r="7" fill="#f4efe2"/>' +
         '<ellipse cx="-17" cy="-1" rx="6" ry="5" fill="#3b3a38"/>' +
-        '<rect x="-10" y="7" width="3" height="9" fill="#3b3a38"/><rect x="5" y="7" width="3" height="9" fill="#3b3a38"/>' +
-        '</g>';
+        '<rect class="xl1" x="-10" y="7" width="3" height="9" fill="#3b3a38"/><rect class="xl2" x="5" y="7" width="3" height="9" fill="#3b3a38"/>' +
+        '</g></g></g>';
     };
     var pino = function (x, k) {
       return '<g transform="translate(' + x + ' 232) scale(' + k + ')">' +
@@ -113,7 +115,7 @@
       '<line x1="22" y1="0" x2="22" y2="-72" stroke="#6b4a2b" stroke-width="3"/><path d="M22 -72 q10 -2 9 8" fill="none" stroke="#6b4a2b" stroke-width="3"/>' +
       '<path d="M-12 0 Q-10 -42 4 -48 Q18 -42 20 0Z" fill="#8c4a2f"/><circle cx="4" cy="-56" r="8" fill="#f2c9a0"/>' +
       '<path d="M-5 -60 Q4 -70 13 -60Z" fill="#5b3a2a"/></g>' +
-      oveja(236, 216, 1) + oveja(286, 224, .8) +
+      oveja(236, 216, 1, 130, 26, 0) + oveja(286, 224, .8, 170, 30, 8) + oveja(450, 221, .9, 330, 40, 15) + oveja(640, 217, .85, 450, 48, 25) +
       /* Reyes Magos */
       (B.reyes ? rey(500, 74, '#a4202d', '#2f7d4f') + rey(548, 82, '#2f7d4f', '#a4202d') + rey(600, 68, '#4f3a8c', '#c99a3b') : '') +
       /* pinos */

@@ -44,6 +44,11 @@ body.navidad .xmas-count{display:block;margin:1.1rem 0 0;font:italic 1.2rem var(
 body.navidad .xmas-scene{display:block;position:relative;z-index:1;width:100%;max-width:880px;margin:1.4rem auto 0}
 body.navidad .xmas-scene svg{display:block;width:100%;height:auto;overflow:visible}
 .xs{transform-origin:center;transform-box:fill-box;animation:xstar 2.6s ease-in-out infinite}
+/* ovejas que pasean por todo el belén */
+.xw{transform-box:fill-box;transform-origin:center;animation:xwalk 30s linear infinite}
+.xb{transform-box:fill-box;transform-origin:center bottom;animation:xbob .6s ease-in-out infinite}
+@keyframes xwalk{0%{transform:translateX(0) scaleX(1)}46%{transform:translateX(calc(-1*var(--d))) scaleX(1)}50%{transform:translateX(calc(-1*var(--d))) scaleX(-1)}96%{transform:translateX(0) scaleX(-1)}100%{transform:translateX(0) scaleX(1)}}
+@keyframes xbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.2px)}}
 @keyframes xstar{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.75;transform:scale(1.12)}}
 .xglow{animation:xglow 3.4s ease-in-out infinite}
 @keyframes xglow{0%,100%{opacity:.85}50%{opacity:1}}
@@ -133,7 +138,7 @@ body.navidad .card.soon{filter:saturate(.8);animation-duration:7s;cursor:default
 }
 @media(prefers-reduced-motion:reduce){
   body.navidad .card{animation:none}
-  .xmas-lights i,.xs,.xglow{animation:none}
+  .xmas-lights i,.xs,.xglow,.xw,.xb{animation:none}
   .xmas-lights .l1,.xmas-lights .l2{opacity:1}
 }
 @media print{.xmas-lights,.xmas-scene,.xmas-toggle,.xmas-count,.foot-xmas{display:none}}
