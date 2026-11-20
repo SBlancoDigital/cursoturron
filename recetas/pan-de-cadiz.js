@@ -74,6 +74,15 @@
         ['Hacer el patrón', 'Dibuja el patrón en papel, ponlo encima de la masa y córtala siguiendo el contorno. Se cortan estrellas, lunas, gotas y medios círculos para el borde de abajo.'],
         ['Pintar y pegar', 'Pinta el pan de Cádiz con licor seco (ron, whisky, vodka...), bien mojado pero sin que quede ningún charco. Pinta también por detrás cada pieza cortada, para asegurarte de que se pega, y colócala.'],
         ['Secar', 'Deja que se seque.']
+      ]},
+      { title: 'Hornear y decorar con glasa real', photo: { src: 'assets/img/pan-de-cadiz-glasa.jpg', alt: 'Pan de Cádiz horneado, dorado, decorado con glasa real blanca siguiendo el dibujo de las piezas', caption: 'El pan de Cádiz terminado: la glasa real dibuja el contorno de las piezas y festonea el borde de abajo.' }, steps: [
+        ['Harina', 'Espolvorea con harina para que seque bien. Antes de hornearlo, límpialo muy bien.'],
+        ['Pintar con huevo', 'Bate un huevo entero y pinta el pan 2 veces antes de hornearlo.'],
+        ['Hornear', 'Hornea a 230\u00a0°C. El tiempo depende de cada horno.'],
+        ['Pintar al salir', 'Justo cuando salga del horno, vuelve a pintarlo.'],
+        ['Enfriar', 'Deja que el pan se enfríe del todo.'],
+        ['Glasa real', 'Pon un poco de clara de huevo y remuévela un poco, hasta que haga un poco de espuma. Añade azúcar glas hasta que, al coger la glasa con la cuchara en vertical, ya no se caiga y quede como una gota. No hay cantidades: se hace a ojo, la que necesites.'],
+        ['Decorar', 'Con la glasa real, decora el pan cuando ya esté frío, siguiendo el contorno de las piezas.']
       ]}
     ],
     confit: ['Naranja confitada', 'Va sobre la capa de nueces, junto con cerezas confitadas. Cuece los gajos tres veces, 5 minutos cada vez, tirando el agua y poniéndolos con agua fría en cada ocasión. Cantidades de la receta: 1 kg de naranja, 500 g de azúcar y 250 g de agua.'],
@@ -99,7 +108,8 @@
       'Medidas exactas del molde, reposo antes de desmoldar y cómo se corta.',
       'Si la masa de la decoración es el mismo mazapán de forro, y cómo se hace el rayado de las piezas.',
       'Cuánto tiempo hay que dejar secar la decoración.',
-      'Pasos que faltan del segundo día (forrar el bloque con el mazapán de forro y hornear) y del sábado (acabar, cortar y presentar).'
+      'Tiempo orientativo de horno (la nota dice 230\u00a0°C, pero el tiempo depende de cada horno).',
+      'Pasos que faltan del segundo día (forrar el bloque con el mazapán de forro) y del sábado (acabar, cortar y presentar).'
     ]
   }
 );
