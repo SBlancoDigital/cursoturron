@@ -104,7 +104,20 @@ function homeView() {
     (window.xmasToggle ? window.xmasToggle() : '') +
     '</div>' + (window.xmasScene ? window.xmasScene() : '') + '</section>' +
     '<section class="wrap"><h2 class="vh">Recetas</h2><ol class="cards">' +
-    RECIPES.map(card).join('') + '</ol></section>';
+    RECIPES.map(card).join('') + '</ol></section>' + extrasHome();
+}
+
+var HOMEX = { id: '', title: 'Todas las recetas', base: '#/extra', uses: {}, home: true };
+function extrasHome() {
+  var ids = Object.keys(EXTRAS);
+  if (!ids.length) return '';
+  return '<section class="wrap xhome"><h2>Recetas extra</h2>' +
+    '<p class="xhome-i">Las preparaciones que se usan dentro de los turrones, para consultarlas sin entrar en cada uno.</p>' +
+    '<ul class="xgrid">' + ids.map(function (id) {
+      var e = EXTRAS[id];
+      return '<li><a class="xcard" href="#/extra/' + id + '"><strong>' + esc(e.title.replace(/ \(.*\)$/, '')) + '</strong>' +
+        '<span>' + (e.kind === 'free' ? 'Cantidad libre' : 'Ligada a la cantidad del turrón') + '</span></a></li>';
+    }).join('') + '</ul></section>';
 }
 
 function card(r) {
@@ -221,6 +234,7 @@ function chain(r, ids) {   /* factor de cantidades de cada ventana, según lo qu
 
 function xmsg(c, parentTitle) {
   if (c.e.kind === 'free') return 'Cantidad libre: haz la que necesites.';
+  if (parentTitle === null) return 'Cantidades de la receta base. Para ajustarlas a tu turrón, ábrela desde la propia receta.';
   if (c.need) return 'Cantidades ajustadas a tu turrón: te hacen falta ' + num(c.need, c.need >= 10 ? 0 : 1) + ' g de ' + c.e.title.toLowerCase() + '.';
   return 'Cantidades ajustadas a tu ' + parentTitle + (c.pf !== 1 ? ' (×' + num(c.pf, 2) + ')' : '') + '.';
 }
@@ -253,8 +267,8 @@ function closeTop() {
 }
 
 function openDialog(r, ids, i, c) {
-  var base = '#/receta/' + r.id + (i ? '/' + ids.slice(0, i).join('/') : '') + '/' + ids[i];
-  var parentTitle = i === 0 ? (r.id === 'pan-de-cadiz' ? 'Pan de Cádiz' : 'turrón') : EXTRAS[ids[i - 1]].title.toLowerCase();
+  var base = (r.base || '#/receta/' + r.id) + (i ? '/' + ids.slice(0, i).join('/') : '') + '/' + ids[i];
+  var parentTitle = i === 0 ? (r.home ? null : r.id === 'pan-de-cadiz' ? 'Pan de Cádiz' : 'turrón') : EXTRAS[ids[i - 1]].title.toLowerCase();
   var backLabel = i === 0 ? r.title : EXTRAS[ids[i - 1]].title.replace(/ \(.*\)$/, '');
   var dlg = document.createElement('dialog');
   dlg.className = 'xdlg';
@@ -303,6 +317,8 @@ var LAST = null;
 function route() {
   var m = location.hash.match(/^#\/receta\/([\w-]+)((?:\/[\w-]+)*)$/);
   var ids = m ? m[2].split('/').filter(Boolean) : [];
+  var mx = location.hash.match(/^#\/extra((?:\/[\w-]+)+)$/);
+  if (mx) ids = mx[1].split('/').filter(Boolean);
   var r = null;
   if (m) {
     r = RECIPES.filter(function (x) { return x.id === m[1] && x.ready; })[0] || null;
@@ -311,7 +327,11 @@ function route() {
     syncExtras(r, ids);
     return;
   }
-  syncExtras(r || { id: '', uses: {} }, []);
+  if (mx && LAST === null && APP.querySelector('.hero')) {   /* ya estamos en la portada: solo cambian las ventanas */
+    syncExtras(HOMEX, ids);
+    return;
+  }
+  syncExtras(r || HOMEX, []);
   XPUSHED = 0;
   if (!r || r.id !== LAST) SCALE = 1;
   LAST = r ? r.id : null;
@@ -324,6 +344,7 @@ function route() {
   if (h && h.focus) h.focus({ preventScroll: true });
   if (r) bindRecipe(r);
   if (r && ids.length) syncExtras(r, ids);
+  if (!r && mx) syncExtras(HOMEX, ids);
   var xm = document.body.classList.contains('navidad');
   startSnow(document.getElementById('snowPage'), r ? (xm ? 30 : 16) : 0);
   if (!r) startSnow(APP.querySelector('.snow'), xm ? 46 : 18);

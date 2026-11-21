@@ -254,3 +254,13 @@ dialog.xdlg:not(.xtop)::backdrop{background:rgba(40,28,18,.2)}
   .xhead,.xfoot{display:none}
   body.xopen{overflow:visible}
 }
+
+/* Apartado de recetas extra en la portada */
+.xhome{margin-top:3rem;padding-bottom:3rem;text-align:center}
+.xhome h2{margin:0 0 .5rem;font:500 1.9rem/1.2 var(--serif);color:var(--green)}
+.xhome-i{margin:0 auto 1.6rem;max-width:34em;color:var(--muted)}
+.xgrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.9rem;text-align:left}
+.xcard{display:flex;flex-direction:column;gap:.15rem;height:100%;padding:.9rem 1.1rem;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;color:inherit;text-decoration:none}
+.xcard strong{font:500 1.05rem/1.25 var(--serif);color:var(--green)}
+.xcard span{font-size:.8rem;color:var(--muted)}
+.xcard:hover,.xcard:focus-visible{box-shadow:0 4px 14px rgba(0,0,0,.1);border-left-color:var(--gold-ink)}
