@@ -129,6 +129,7 @@ h3.sub{margin:2.2rem 0 .2rem;font:italic 1.3rem var(--serif);color:var(--gold-in
 .lay.coco{background:#f6f1e4;color:#4a4130;border:1px solid #e2d9c1}
 .lay.gian{background:#6a4430;color:#f6ece3}
 .lay.limon{background:#efe6a8;color:#58531d}
+.lay.limon{border-radius:2px 2px 22px 22px}
 .fr{padding:.32rem 1rem;text-align:center;font-size:.76rem;letter-spacing:.06em;color:var(--gold-ink);border:1px dashed var(--gold);border-radius:2px;background:#fff}
 .photo{margin:0 auto 1.6rem;max-width:420px;text-align:center}
 .photo img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
