@@ -185,8 +185,6 @@ function recipeView(r) {
     (r.extra || []).map(function (x) { return '<section><h2>' + esc(x.title) + '</h2>' + (x.photo ? '<figure class="photo"><img src="' + esc(x.photo.src) + '" alt="' + esc(x.photo.alt) + '" loading="lazy"><figcaption>' + esc(x.photo.caption) + '</figcaption></figure>' : '') + steps(x.steps) + '</section>'; }).join('') +
     (r.tips && r.tips.length ? '<section><h2>Trucos del curso</h2><ul class="tips">' +
     r.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + lk(sc(t[1])) + '</li>'; }).join('') + '</ul></section>' : '') +
-    (r.pending && r.pending.length ? '<details class="pending"><summary>Notas pendientes del curso</summary><ul>' +
-    r.pending.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></details>' : '') +
     pager + '</article>';
 }
 
@@ -240,8 +238,7 @@ function extraBody(c, base, parentTitle) {
     }).join('') +
     '<h3 class="sub">Preparación</h3>' + steps(e.prep) +
     (e.aside ? '<div class="aside"><strong>' + esc(e.aside[0]) + '</strong><p>' + lk(sc(e.aside[1])) + '</p></div>' : '') +
-    (e.tips && e.tips.length ? '<h3 class="sub">Trucos del curso</h3><ul class="tips">' + e.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + lk(sc(t[1])) + '</li>'; }).join('') + '</ul>' : '') +
-    (e.pending && e.pending.length ? '<details class="pending"><summary>Notas pendientes del curso</summary><ul>' + e.pending.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></details>' : '');
+    (e.tips && e.tips.length ? '<h3 class="sub">Trucos del curso</h3><ul class="tips">' + e.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + lk(sc(t[1])) + '</li>'; }).join('') + '</ul>' : '');
   SCALE = keep; XBASE = keepBase;
   return html;
 }

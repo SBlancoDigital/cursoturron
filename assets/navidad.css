@@ -118,12 +118,12 @@ body.navidad .cards li:nth-child(6n+6) .card{--b1:#9cc0ff;--b2:#4f7bdc;--b3:#2f5
 body.navidad .ball-svg{display:block;position:absolute;inset:0;pointer-events:none}
 body.navidad .ball-svg svg{display:block;width:100%;height:100%;overflow:visible}
 body.navidad .card .num,body.navidad .card h3,body.navidad .card .tag{position:absolute;width:1px;height:1px;margin:0;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-body.navidad .ball-svg text{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;fill:var(--tx)}
+body.navidad .ball-svg text{font-family:var(--serif);fill:var(--tx)}
 body.navidad .ball-svg .bt{filter:drop-shadow(0 1px 1.2px rgba(0,0,0,.3))}
 body.navidad .ball-svg .bn{font-style:italic;fill:rgba(255,246,214,.95)}
 body.navidad .cards li:nth-child(6n+3) .ball-svg .bn{fill:#7a4d0c}
 body.navidad .cards li:nth-child(6n+4) .ball-svg .bn{fill:#8a6a24}
-body.navidad .ball-svg .bg{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:600;letter-spacing:1.6px;opacity:.92}
+body.navidad .ball-svg .bg{font-family:var(--sans);font-weight:600;letter-spacing:1.6px;opacity:.92}
 /* las que aún no están: bolas más suaves */
 body.navidad .card.soon{filter:saturate(.8);animation-duration:7s;cursor:default}
 
@@ -147,3 +147,7 @@ body.navidad main:has(.hero){background:#0f3024}
 
 /* el logo sobresale sobre el cielo oscuro: le damos un fondo crema redondo para que se lea */
 body.navidad .brand img{background:#fbf7ef;border-radius:50%;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+
+/* Letra de Navidad */
+body.navidad{--serif:"Playpen Sans Hebrew","Poppins",ui-sans-serif,system-ui,sans-serif;--sans:"Playpen Sans Hebrew","Poppins",ui-sans-serif,system-ui,sans-serif}
+body.navidad *,body.navidad *::before,body.navidad *::after{font-style:normal!important}

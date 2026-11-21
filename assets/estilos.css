@@ -1,8 +1,14 @@
+/* Tipografías (alojadas en la propia web; licencia OFL en assets/fonts) */
+@font-face{font-family:"Poppins";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/poppins-Regular.woff) format("woff")}
+@font-face{font-family:"Poppins";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/poppins-Medium.woff) format("woff")}
+@font-face{font-family:"Poppins";font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/poppins-SemiBold.woff) format("woff")}
+@font-face{font-family:"Poppins";font-style:italic;font-weight:400 800;font-display:swap;src:url(fonts/poppins-Italic.woff) format("woff")}
+@font-face{font-family:"Playpen Sans Hebrew";font-style:normal;font-weight:100 800;font-display:swap;src:url(fonts/playpen.woff) format("woff")}
 :root{
   --paper:#fbf8f2; --card:#ffffff; --ink:#27302b; --muted:#6a6f66;
   --green:#1d3a2e; --gold:#b39358; --gold-ink:#7a5f2c; --line:#e7e0d1;
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --sans:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -39,7 +45,7 @@ h1:focus{outline:none}
 .snow-page i{animation-name:fallpage}
 @keyframes fallpage{0%{transform:translate3d(0,0,0);opacity:0}10%{opacity:.5}90%{opacity:.35}100%{transform:translate3d(var(--dx,0),108vh,0);opacity:0}}
 .kicker{margin:0 0 .6rem;font:600 .74rem var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold-ink)}
-.hero h1,.r-head h1{margin:0;font:400 clamp(2.3rem,6.5vw,3.6rem)/1.1 var(--serif);color:var(--green);letter-spacing:.005em}
+.hero h1,.r-head h1{margin:0;font:500 clamp(2.3rem,6.5vw,3.6rem)/1.1 var(--serif);color:var(--green);letter-spacing:.005em}
 .sub{margin:1rem auto 0;max-width:30em;font:italic 1.25rem/1.5 var(--serif);color:#44504a}
 
 /* índice */
@@ -47,7 +53,7 @@ h1:focus{outline:none}
 .card{display:block;height:100%;padding:1.4rem 1.5rem 1.3rem;background:var(--card);border:1px solid var(--line);border-radius:3px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s}
 a.card:hover{border-color:var(--gold);box-shadow:0 8px 26px -16px rgba(29,58,46,.4)}
 .card .num{font:italic 1.3rem var(--serif);color:var(--gold)}
-.card h3{margin:.2rem 0 .45rem;font:400 1.4rem/1.25 var(--serif);color:var(--green)}
+.card h3{margin:.2rem 0 .45rem;font:500 1.4rem/1.25 var(--serif);color:var(--green)}
 .card p{margin:0 0 .9rem;color:var(--muted);font-size:.95rem}
 .tag{font:600 .72rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
 .card.soon{background:transparent;border-style:dashed}
@@ -62,7 +68,7 @@ a.card:hover{border-color:var(--gold);box-shadow:0 8px 26px -16px rgba(29,58,46,
 .back-top[hidden]{display:none}
 .back-top:hover{text-decoration:underline}
 .recipe{padding-top:1.4rem}
-.r-head{text-align:center;padding:1.6rem 0 .6rem}
+.r-head{text-align:center;padding:3.4rem 0 .6rem}
 .lead{margin:1.1rem auto 0;max-width:34em;font:italic 1.2rem/1.55 var(--serif);color:#44504a}
 .meta{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:0 0 1rem;padding:0}
 .meta li{border:1px solid var(--line);border-radius:999px;padding:.3rem .95rem;font-size:.85rem;color:var(--muted);background:#fff}
@@ -70,7 +76,7 @@ a.card:hover{border-color:var(--gold);box-shadow:0 8px 26px -16px rgba(29,58,46,
 .r-head .kicker{margin:.7rem 0 0}
 .r-tools{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem 1.5rem;flex-wrap:wrap;margin-top:1.8rem;text-align:left}
 .recipe section{margin-top:3.2rem}
-.recipe h2{margin:0 0 1.6rem;font:400 1.9rem/1.2 var(--serif);color:var(--green);text-align:center}
+.recipe h2{margin:0 0 1.6rem;font:500 1.9rem/1.2 var(--serif);color:var(--green);text-align:center}
 .recipe h2::after{content:"";display:block;width:36px;height:1px;background:var(--gold);margin:.8rem auto 0}
 h3.sub{margin:2.2rem 0 .2rem;font:italic 1.3rem var(--serif);color:var(--gold-ink)}
 .intro{margin:0 0 .6rem;color:var(--muted);font-size:.95rem}
