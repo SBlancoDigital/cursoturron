@@ -28,11 +28,11 @@
       { heading: 'Las cuatro capas', intro: 'Cada capa lleva 400 g de mazapán base.', cols: 2, groups: [
         { title: 'Limón', items: [['Licor seco (ron, whisky, vodka…)', '6 gotas'], ['Colorante', 'al gusto'], ['[[pasta-limon|Pasta de limón]]', '20 g'], ['Fruta confitada en dados', '80 g']] },
         { title: 'Nueces', note: 'Encima: naranja confitada con cerezas.', items: [['Nueces troceadas', '80 g'], ['Vainilla', 'por confirmar'], ['Licor', '2 cucharadas']] },
-        { title: 'Yema', note: 'Encima: tiras de fruta confitada.', items: [['[[yema-dura|Yema dura]]', '125 g'], ['Colorante de huevo', 'al gusto'], ['Vainilla azucarada', 'por confirmar']] },
-        { title: 'Chocolate', items: [['Cacao en polvo', '25 g'], ['Pasta de naranja (opcional)', 'por confirmar']] }
+        { title: 'Yema', note: 'Encima: tiras de fruta confitada.', items: [['[[yema-dura|Yema dura]]', '125 g'], ['Colorante de huevo', 'al gusto'], ['Vainilla azucarada', 'al gusto']] },
+        { title: 'Chocolate', items: [['Cacao en polvo', '25 g'], ['Pasta de naranja (opcional)', 'al gusto']] }
       ]},
       { heading: 'Además', groups: [
-        { title: 'Además', text: 'Cerezas confitadas, fruta confitada en tiras (verde, clara y roja, o bien orejones o dátiles), canela en polvo y papel film para forrar el molde. Las recetas extra (yema dura, pasta de limón, naranja confitada, mazapán basto y glasa real) se abren desde los enlaces.' }
+        { title: 'Decorar y forrar', text: 'Cerezas confitadas, fruta confitada en tiras (verde, clara y roja, o bien orejones o dátiles), canela en polvo y papel film para forrar el molde. Las recetas extra (yema dura, pasta de limón, naranja confitada, mazapán basto y glasa real) se abren desde los enlaces.' }
       ]}
     ],
     prep: [
