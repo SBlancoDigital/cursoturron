@@ -1,5 +1,6 @@
 /* Receta 05 · Turrón de mazapán de nata y nuez */
 (window.RECIPES = window.RECIPES || []).push({
+  origin: "Ala d'Or",
   id: 'nata-nuez', num: '05', ready: true,
   title: 'Turrón de nata y nuez',
   short: 'Mazapán de almendra con nata, jarabe a 110 °C y nueces troceadas.',

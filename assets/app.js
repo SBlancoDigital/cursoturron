@@ -12,6 +12,16 @@ function esc(s) {
 }
 
 
+/* ---- Recetas extra: enlaces [[id|texto]] dentro de los textos ---- */
+var EXTRAS = window.EXTRAS || {};
+Object.keys(EXTRAS).forEach(function (k) { EXTRAS[k].id = k; });
+var XBASE = '#/';                      /* ruta de la receta (o ventana) que se está dibujando */
+function lk(s) {
+  return esc(s).replace(/\[\[([\w-]+)\|([^\]]+)\]\]/g, function (m, id, label) {
+    return EXTRAS[id] ? '<a class="xlink" href="' + XBASE + '/' + id + '">' + label + '</a>' : label;
+  });
+}
+
 /* ---- Ajuste de cantidades ---- */
 var SCALE = 1;
 var PRESETS = [[0.5, '½'], [1, '1'], [1.5, '1½'], [2, '2'], [3, '3']];
@@ -53,7 +63,7 @@ function qty(q) {
 
 function ingList(items) {
   return '<ul class="ing">' + items.map(function (i) {
-    return '<li><span class="n">' + esc(i[0]) + '</span><span class="dots"></span>' + qty(i[1]) + '</li>';
+    return '<li><span class="n">' + lk(i[0]) + '</span><span class="dots"></span>' + qty(i[1]) + '</li>';
   }).join('') + '</ul>';
 }
 
@@ -64,7 +74,7 @@ function group(g) {
     (g.n ? badge(g.n) + '<span class="vh">Mezcla ' + g.n + ': </span>' : '') + esc(g.title) + '</h4>' +
     (g.note ? '<p class="note">' + esc(g.note) + '</p>' : '') +
     (g.items ? ingList(g.items) : '') +
-    (g.text ? '<p>' + esc(g.text) + '</p>' : '') + '</div>';
+    (g.text ? '<p>' + lk(g.text) + '</p>' : '') + '</div>';
 }
 
 function ingredientBlock(b) {
@@ -75,7 +85,7 @@ function ingredientBlock(b) {
 
 function steps(list) {
   return '<ol class="steps">' + list.map(function (s) {
-    return '<li><div><strong>' + (s[2] ? badge(s[2]) : '') + esc(s[0]) + '</strong><p>' + esc(s[1]) + '</p></div></li>';
+    return '<li><div><strong>' + (s[2] ? badge(s[2]) : '') + esc(s[0]) + '</strong><p>' + lk(s[1]) + '</p></div></li>';
   }).join('') + '</ol>';
 }
 
@@ -145,7 +155,15 @@ function bindRecipe(r) {
   });
 }
 
+function extrasBar(r) {
+  var list = (r.extras || []).filter(function (id) { return EXTRAS[id]; });
+  if (!list.length) return '';
+  return '<nav class="xbar" aria-label="Recetas extra de esta receta"><span class="xbar-t">Recetas extra</span><ul>' +
+    list.map(function (id) { return '<li><a class="xlink" href="' + XBASE + '/' + id + '">' + esc(EXTRAS[id].title.replace(/ \(.*\)$/, '')) + '</a></li>'; }).join('') + '</ul></nav>';
+}
+
 function recipeView(r) {
+  XBASE = '#/receta/' + r.id;
   var ready = RECIPES.filter(function (x) { return x.ready; });
   var i = ready.indexOf(r), prev = ready[i - 1], next = ready[i + 1];
   var pager = '<nav class="pager" aria-label="Más recetas"><span>' +
@@ -155,16 +173,18 @@ function recipeView(r) {
 
   return '<article class="wrap narrow recipe">' +
     '<header class="r-head"><h1 tabindex="-1">' + esc(r.title) + '</h1><p class="kicker">Receta ' + r.num + '</p>' +
+    (r.origin ? '<p class="origin">Receta original que utilizaba ' + esc(r.origin) + '</p>' : '') +
     (r.lead ? '<p class="lead">' + esc(r.lead) + '</p>' : '') + ORN +
     (r.meta && r.meta.length ? '<ul class="meta">' + r.meta.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' : '') +
     '<div class="r-tools">' + scalerView() + '<button class="print" type="button" data-print>Imprimir receta</button></div></header>' +
+    extrasBar(r) +
     '<section><h2>Ingredientes</h2>' + r.ingredients.map(ingredientBlock).join('') + '</section>' +
     '<section><h2>' + esc(r.prepTitle || 'Preparación del mazapán base') + '</h2>' + steps(r.prep) + '</section>' +
     ((r.assembly || r.stack || r.confit) ? '<section><h2>' + esc(r.assemblyTitle || 'Montaje de las capas') + '</h2>' + (r.stack ? stack(r.stack) : '') + (r.assembly ? steps(r.assembly) : '') +
-    (r.confit ? '<div class="aside"><strong>' + esc(r.confit[0]) + '</strong><p>' + esc(sc(r.confit[1])) + '</p></div>' : '') + '</section>' : '') +
+    (r.confit ? '<div class="aside"><strong>' + esc(r.confit[0]) + '</strong><p>' + lk(sc(r.confit[1])) + '</p></div>' : '') + '</section>' : '') +
     (r.extra || []).map(function (x) { return '<section><h2>' + esc(x.title) + '</h2>' + (x.photo ? '<figure class="photo"><img src="' + esc(x.photo.src) + '" alt="' + esc(x.photo.alt) + '" loading="lazy"><figcaption>' + esc(x.photo.caption) + '</figcaption></figure>' : '') + steps(x.steps) + '</section>'; }).join('') +
     (r.tips && r.tips.length ? '<section><h2>Trucos del curso</h2><ul class="tips">' +
-    r.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + esc(sc(t[1])) + '</li>'; }).join('') + '</ul></section>' : '') +
+    r.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + lk(sc(t[1])) + '</li>'; }).join('') + '</ul></section>' : '') +
     (r.pending && r.pending.length ? '<details class="pending"><summary>Notas pendientes del curso</summary><ul>' +
     r.pending.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></details>' : '') +
     pager + '</article>';
@@ -184,13 +204,118 @@ function startSnow(el, count) {
   el.innerHTML = html;
 }
 
+/* ---- Ventanas de recetas extra (se abren encima y, al cerrarlas, sigues donde estabas) ---- */
+var XSTACK = [];          /* [{id, dlg, opener}] */
+var XPUSHED = 0;          /* ventanas abiertas por el usuario en esta receta (para volver atrás) */
+
+function chain(r, ids) {   /* factor de cantidades de cada ventana, según lo que gasta el nivel de abajo */
+  var f = SCALE, parent = r, out = [];
+  ids.forEach(function (id) {
+    var e = EXTRAS[id], use = (parent.uses && parent.uses[id]) || {}, pf = f, need = null;
+    if (e.kind === 'free') { f = 1; }
+    else if (use.need && e.yield) { need = use.need * pf; f = need / e.yield; }
+    else { f = pf * (use.k || 1); }
+    out.push({ e: e, f: f, pf: pf, need: need });
+    parent = e;
+  });
+  return out;
+}
+
+function xmsg(c, parentTitle) {
+  if (c.e.kind === 'free') return 'Cantidad libre: haz la que necesites.';
+  if (c.need) return 'Cantidades ajustadas a tu turrón: te hacen falta ' + num(c.need, c.need >= 10 ? 0 : 1) + ' g de ' + c.e.title.toLowerCase() + '.';
+  return 'Cantidades ajustadas a tu ' + parentTitle + (c.pf !== 1 ? ' (×' + num(c.pf, 2) + ')' : '') + '.';
+}
+
+function extraBody(c, base, parentTitle) {
+  var e = c.e, keep = SCALE, keepBase = XBASE;
+  SCALE = c.f; XBASE = base;
+  var html =
+    '<p class="xmsg ' + (e.kind === 'free' ? 'free' : 'linked') + '" role="status">' + esc(xmsg(c, parentTitle)) + '</p>' +
+    '<h2 class="xtitle" id="xt-' + e.id + '" tabindex="-1">' + esc(e.title) + '</h2>' +
+    (e.lead ? '<p class="lead">' + esc(e.lead) + '</p>' : '') +
+    (e.ingredients || []).map(function (b) {
+      var cp = Object.assign({}, b, { groups: b.groups.map(function (g) { return Object.assign({}, g, { note: g.note ? sc(g.note) : g.note }); }) });
+      return ingredientBlock(cp).replace(/^<h3 class="sub">[^<]*<\/h3>/, b.heading === e.title.replace(/ \(.*\)$/, '') || e.title.indexOf(b.heading) === 0 ? '' : '$&');
+    }).join('') +
+    '<h3 class="sub">Preparación</h3>' + steps(e.prep) +
+    (e.aside ? '<div class="aside"><strong>' + esc(e.aside[0]) + '</strong><p>' + lk(sc(e.aside[1])) + '</p></div>' : '') +
+    (e.tips && e.tips.length ? '<h3 class="sub">Trucos del curso</h3><ul class="tips">' + e.tips.map(function (t) { return '<li><b>' + esc(t[0]) + '</b> ' + lk(sc(t[1])) + '</li>'; }).join('') + '</ul>' : '') +
+    (e.pending && e.pending.length ? '<details class="pending"><summary>Notas pendientes del curso</summary><ul>' + e.pending.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></details>' : '');
+  SCALE = keep; XBASE = keepBase;
+  return html;
+}
+
+function parentHash(ids, n) { return '#/receta/' + ids.slice(0, 1)[0] + (n ? '/' + ids.slice(1, n + 1).join('/') : ''); }
+
+function closeTop() {
+  if (!XSTACK.length) return;
+  if (XPUSHED > 0) { history.back(); return; }
+  var m = location.hash.match(/^(#\/receta\/[\w-]+(?:\/[\w-]+)*)\/[\w-]+$/);
+  location.replace(m ? m[1] : '#/');
+}
+
+function openDialog(r, ids, i, c) {
+  var base = '#/receta/' + r.id + (i ? '/' + ids.slice(0, i).join('/') : '') + '/' + ids[i];
+  var parentTitle = i === 0 ? (r.id === 'pan-de-cadiz' ? 'Pan de Cádiz' : 'turrón') : EXTRAS[ids[i - 1]].title.toLowerCase();
+  var backLabel = i === 0 ? r.title : EXTRAS[ids[i - 1]].title.replace(/ \(.*\)$/, '');
+  var dlg = document.createElement('dialog');
+  dlg.className = 'xdlg';
+  dlg.setAttribute('aria-labelledby', 'xt-' + ids[i]);
+  dlg.innerHTML =
+    '<div class="xin"><div class="xhead"><button type="button" class="xback" data-xclose>← Volver a ' + esc(backLabel) + '</button>' +
+    '<button type="button" class="xx" data-xclose aria-label="Cerrar">×</button></div>' +
+    '<div class="xbody">' + extraBody(c, base, parentTitle) + '</div>' +
+    '<div class="xfoot"><button type="button" class="print" data-xprint>Imprimir esta receta</button> <button type="button" class="xback" data-xclose>← Volver a ' + esc(backLabel) + '</button></div></div>';
+  dlg.addEventListener('cancel', function (ev) { ev.preventDefault(); closeTop(); });
+  dlg.addEventListener('click', function (ev) {
+    if (ev.target === dlg) { closeTop(); return; }
+    var b = ev.target.closest ? ev.target.closest('[data-xclose]') : null;
+    if (b) { closeTop(); return; }
+    var p = ev.target.closest ? ev.target.closest('[data-xprint]') : null;
+    if (p) window.print();
+  });
+  document.body.appendChild(dlg);
+  var opener = document.activeElement;
+  if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  var t = dlg.querySelector('.xtitle'); if (t) t.focus({ preventScroll: true });
+  return { id: ids[i], dlg: dlg, opener: opener };
+}
+
+function syncExtras(r, ids) {
+  ids = ids.filter(function (id, i) { return EXTRAS[id] && (i === 0 || true); });
+  var cs = chain(r, ids), keep = 0;
+  while (keep < XSTACK.length && keep < ids.length && XSTACK[keep].id === ids[keep]) keep++;
+  while (XSTACK.length > keep) {
+    var x = XSTACK.pop();
+    if (x.dlg.close) x.dlg.close(); x.dlg.remove();
+    if (!XSTACK.length && x.opener && x.opener.focus && document.contains(x.opener)) x.opener.focus({ preventScroll: true });
+  }
+  for (var i = keep; i < ids.length; i++) XSTACK.push(openDialog(r, ids, i, cs[i]));
+  XPUSHED = Math.min(XPUSHED, ids.length);
+  document.body.classList.toggle('xopen', ids.length > 0);
+  if (XSTACK.length) XSTACK.forEach(function (x, j) { x.dlg.classList.toggle('xtop', j === XSTACK.length - 1); });
+}
+
+document.addEventListener('click', function (e) {
+  var a = e.target.closest ? e.target.closest('a.xlink') : null;
+  if (a) XPUSHED++;
+});
+
 var LAST = null;
 function route() {
-  var m = location.hash.match(/^#\/receta\/([\w-]+)$/);
+  var m = location.hash.match(/^#\/receta\/([\w-]+)((?:\/[\w-]+)*)$/);
+  var ids = m ? m[2].split('/').filter(Boolean) : [];
   var r = null;
   if (m) {
     r = RECIPES.filter(function (x) { return x.id === m[1] && x.ready; })[0] || null;
   }
+  if (r && r.id === LAST && APP.querySelector('.recipe')) {   /* misma receta: solo cambian las ventanas */
+    syncExtras(r, ids);
+    return;
+  }
+  syncExtras(r || { id: '', uses: {} }, []);
+  XPUSHED = 0;
   if (!r || r.id !== LAST) SCALE = 1;
   LAST = r ? r.id : null;
   APP.innerHTML = r ? recipeView(r) : homeView();
@@ -201,6 +326,7 @@ function route() {
   var h = APP.querySelector('h1');
   if (h && h.focus) h.focus({ preventScroll: true });
   if (r) bindRecipe(r);
+  if (r && ids.length) syncExtras(r, ids);
   var xm = document.body.classList.contains('navidad');
   startSnow(document.getElementById('snowPage'), r ? (xm ? 30 : 16) : 0);
   if (!r) startSnow(APP.querySelector('.snow'), xm ? 46 : 18);

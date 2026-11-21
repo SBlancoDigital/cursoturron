@@ -1,5 +1,8 @@
 /* Receta 04 · Turrón de mazapán de coco */
 (window.RECIPES = window.RECIPES || []).push({
+  extras: ['gianduja', 'praline'],
+  uses: { 'gianduja': { need: 100 }, 'praline': { need: 60 } },
+  origin: "Ala d'Or",
   id: 'coco', num: '04', ready: true,
   title: 'Turrón de coco',
   short: 'Mazapán de almendra con coco, en cinco capas con gianduja.',
@@ -24,10 +27,6 @@
       { title: 'Almíbar', note: 'Se hace recién antes de añadirlo.', items: [['Azúcar', '225 g'], ['Agua', '80 g']] },
       { title: 'Jarabe', note: 'Hasta 114 °C.', items: [['Azúcar', '650 g'], ['Agua', '200 g']] },
       { title: 'Coco y glucosa', items: [['Coco rallado', '400 g'], ['Glucosa', '200 g']], note: 'Ten comprados 500 g de coco rallado.' }
-    ]},
-    { heading: 'Gianduja', intro: 'Cada capa lleva 25 g. Hay un atajo en los trucos si tienes prisa.', cols: 2, groups: [
-      { title: 'Gianduja', items: [['Chocolate negro de cobertura (aprox. 48 %)', '400 g'], ['Praliné', '600 g']] },
-      { title: 'Praliné', note: 'Mitad avellana tostada y mitad azúcar.', items: [['Avellana tostada', '300 g'], ['Azúcar', '300 g']] }
     ]}
   ],
   prep: [
@@ -38,19 +37,12 @@
     ['Coco y jarabe', 'A la mezcla del mazapán añade el coco (400 g) y el jarabe.'],
     ['Glucosa', 'Revuélvelo muy bien y añade la glucosa. Sigue meneando. Si queda demasiado líquido, añade una cucharada de coco, hasta una consistencia manejable pero pegajosa.']
   ],
-  extra: [
-    { title: 'Gianduja y praliné', steps: [
-      ['Praliné', 'Tritura muy bien la avellana tostada con el azúcar, a partes iguales, hasta que al apretarlo entre los puños la mezcla mantenga la forma.'],
-      ['Gianduja', 'Mezcla 400 g de chocolate negro de cobertura (aprox. 48 %) con 600 g de praliné.']
-    ]}
-  ],
   assembly: [
     ['Primera capa', 'Pon una capa de coco de 280 g, bien aplanada y con mucho cuidado en las esquinas.'],
-    ['Gianduja', 'Pon encima una capa de 25 g de gianduja.'],
+    ['Gianduja', 'Pon encima una capa de 25 g de [[gianduja|gianduja]].'],
     ['Seguir alternando', 'Otra capa de coco, otra de gianduja, y así hasta tener 5 capas de turrón y 4 de gianduja. Empieza y acaba por turrón.'],
     ['Tapar', 'Pon el papel de la tapa y tapa, dando balanceos hasta aplanarlo y nivelarlo perfecto.']
   ],
-  confit: ['Gianduja rápida, si hay prisa', 'Para no tener que fabricarla: 100 g de Nocilla y 100 g de avellana, con una vuelta de microondas.'],
   tips: [
     ['La glucosa', 'se calienta en el horno a 42 °C solo para que no esté fría.'],
     ['El almíbar', 'se añade recién hecho.'],
@@ -59,9 +51,6 @@
     ['Coco:', 'ten comprados 500 g, aunque la receta lleva 400 g.']
   ],
   pending: [
-    'Cómo se mezcla y se funde el chocolate con el praliné para hacer la gianduja.',
-    'La gianduja (400 g + 600 g) sale en mucha más cantidad que los 100 g que se usan (4 capas de 25 g): ¿se reduce o se guarda?',
-    'Qué se hace con la Nocilla y la avellana después del microondas.',
     'Reposo antes de desmoldar y cómo se corta.'
   ]
 });

@@ -1,5 +1,7 @@
 /* Receta 03 · Turrón de mazapán de yema */
 (window.RECIPES = window.RECIPES || []).push({
+  extras: ['yema-dura'],
+  uses: { 'yema-dura': { k: 0.66 } },
   id: 'yema', num: '03', ready: true,
   title: 'Turrón de yema',
   short: 'Mazapán de almendra con yema dura, en molde con canela.',
@@ -11,8 +13,8 @@
     { heading: 'Mazapán', cols: 2, groups: [
       { n: 1, title: 'Primera parte', note: 'Importante: en este orden.', items: [['Nata para montar', '65 g'], ['Leche condensada', '65 g'], ['Chocolate blanco', '65 g']] },
       { n: 2, title: 'Segunda parte', note: 'La vainilla va en esta mezcla: así se integra muy bien.', items: [['Harina de almendra', '580 g'], ['Azúcar', '125 g'], ['Patata', '75 g'], ['Vainilla azucarada', '1 tubo']] },
-      { n: 3, title: 'Jarabe', note: 'Con termómetro de caramelo, sin menearlo, hasta 126 °C.', items: [['Azúcar', '500 g'], ['Agua', 'por confirmar'], ['Glucosa (sirope)', '125 g'], ['Colorante de huevo', 'por confirmar']] },
-      { title: 'Yema', note: 'Receta de la yema dura: la del Pan de Cádiz (por confirmar).', items: [['Yema dura', '150 g']] }
+      { n: 3, title: 'Jarabe', note: 'Con termómetro de caramelo, sin menearlo, hasta 126 °C.', items: [['Azúcar', '500 g'], ['Agua', 'por confirmar'], ['Glucosa (sirope)', '125 g'], ['Colorante de huevo', 'al gusto']] },
+      { title: 'Yema', note: 'Receta de la yema dura: la del Pan de Cádiz (por confirmar).', items: [['[[yema-dura|Yema dura]]', '150 g']] }
     ]},
     { heading: 'Además', groups: [
       { title: 'Para el molde', text: 'Papel de horno y canela en polvo.' }
@@ -26,7 +28,7 @@
     ['Molde', 'Forra el molde con papel de horno: se dobla y se cortan las esquinas, como en el dibujo de los apuntes. Ponlo dentro del molde y espolvoréalo de canela.'],
     ['Jarabe', 'Cuece 500 g de azúcar con el agua y 125 g de glucosa hasta 126 °C, con un termómetro de caramelo y sin menearlo. El colorante de huevo se añade aquí: tiene un color de caramelo poco intenso.', 3],
     ['Incorporar el jarabe', 'Cuando el cuenco está caliente y la mezcla de azúcar, glucosa y colorante está a 126 °C, añádela poco a poco, nunca de golpe, porque salpicaría y podría solidificarse sin querer.'],
-    ['Yemas', 'Añade las yemas (150 g de yema dura) y sigue meneando hasta que la masa no se pegue.']
+    ['Yemas', 'Añade las yemas (150 g de [[yema-dura|yema dura]]) y sigue meneando hasta que la masa no se pegue.']
   ],
   assembly: [
     ['Cantidad', 'Con el molde salen 5 barras. En cada parte hay que poner 750 g de masa, hasta llegar a 1,5 kg en total.'],
@@ -49,7 +51,6 @@
   ],
   pending: [
     'Cantidad de agua del jarabe: no está apuntada (en el Pan de Cádiz son 100 g con 500 g de azúcar; en una nota aparte aparece «1 kg de azúcar / 300 g de agua»).',
-    'Cantidad de colorante de huevo.',
     'Si los 150 g de yema dura salen de la misma receta que en el Pan de Cádiz.',
     'Cómo se prepara la mezcla 1 (en el Pan de Cádiz: microondas en tandas de 1 minuto o baño maría).',
     'Cómo se cierra exactamente el papel de horno encima de la masa.',

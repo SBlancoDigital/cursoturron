@@ -217,3 +217,34 @@ footer a{color:#e9e2d0}
   .recipe section{margin-top:1.6rem;break-inside:avoid-page}
   .steps li{break-inside:avoid}
 }
+
+/* ---- Recetas extra ---- */
+a.xlink{color:var(--terra,#a4522f);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a.xlink:hover{text-decoration-thickness:2px}
+.xbar{margin:1.2rem 0 0;padding:.7rem 1rem;border:1px solid var(--line,#e3d8c8);border-radius:10px;background:rgba(255,255,255,.55);display:flex;flex-wrap:wrap;gap:.4rem .9rem;align-items:center}
+.xbar-t{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.xbar ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1rem}
+body.xopen{overflow:hidden}
+dialog.xdlg{border:0;padding:0;margin:0;width:100%;max-width:none;height:100%;max-height:none;background:transparent;color:inherit}
+dialog.xdlg::backdrop{background:rgba(40,28,18,.55)}
+dialog.xdlg:not(.xtop)::backdrop{background:rgba(40,28,18,.2)}
+.xin{position:relative;box-sizing:border-box;width:min(820px,calc(100% - 1.2rem));max-height:calc(100% - 1.6rem);margin:.8rem auto;overflow:auto;background:var(--paper,#fffaf2);border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,.35);padding:0 1.4rem 1.4rem;-webkit-overflow-scrolling:touch}
+.xhead{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.7rem 0;background:var(--paper,#fffaf2);border-bottom:1px solid var(--line,#e3d8c8)}
+.xback{font:inherit;font-size:.92rem;background:none;border:1px solid var(--line,#cdbfa9);border-radius:999px;padding:.4rem .9rem;cursor:pointer;color:inherit}
+.xx{font:inherit;font-size:1.6rem;line-height:1;background:none;border:0;cursor:pointer;color:inherit;padding:.1rem .6rem}
+.xmsg{margin:.9rem 0 0;padding:.45rem .8rem;border-radius:8px;font-size:.88rem;font-weight:600}
+.xmsg.free{background:#eef3e6;color:#3f5a22}
+.xmsg.linked{background:#fbefd2;color:#7a5410}
+.xtitle{margin:1rem 0 .4rem;outline:none}
+.xfoot{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between}
+.sub{margin:1.4rem 0 .4rem}
+.origin{display:inline-block;margin:.3rem 0 0;padding:.3rem .8rem;border:1px solid var(--gold,#b8923a);border-radius:999px;font-size:.85rem;font-style:italic}
+@media print{
+  .xbar{display:none}
+  body.xopen>*:not(dialog.xdlg){display:none}
+  dialog.xdlg:not(.xtop){display:none}
+  dialog.xdlg.xtop{position:static;height:auto}
+  .xin{box-shadow:none;max-height:none;overflow:visible;width:100%;margin:0}
+  .xhead,.xfoot{display:none}
+  body.xopen{overflow:visible}
+}
