@@ -72,7 +72,7 @@ function badge(n) { return '<span class="mix-n m' + n + '" aria-hidden="true">' 
 function group(g) {
   return '<div class="grp' + (g.n ? ' mix m' + g.n : '') + '"><h4>' +
     (g.n ? badge(g.n) + '<span class="vh">Mezcla ' + g.n + ': </span>' : '') + esc(g.title) + '</h4>' +
-    (g.note ? '<p class="note">' + esc(g.note) + '</p>' : '') +
+    (g.note ? '<p class="note">' + esc(sc(g.note)) + '</p>' : '') +
     (g.items ? ingList(g.items) : '') +
     (g.text ? '<p>' + lk(g.text) + '</p>' : '') + '</div>';
 }
@@ -85,7 +85,7 @@ function ingredientBlock(b) {
 
 function steps(list) {
   return '<ol class="steps">' + list.map(function (s) {
-    return '<li><div><strong>' + (s[2] ? badge(s[2]) : '') + esc(s[0]) + '</strong><p>' + lk(s[1]) + '</p></div></li>';
+    return '<li><div><strong>' + (s[2] ? badge(s[2]) : '') + esc(s[0]) + '</strong><p>' + lk(sc(s[1])) + '</p></div></li>';
   }).join('') + '</ol>';
 }
 
@@ -247,7 +247,7 @@ function extraBody(c, base, parentTitle) {
     '<h2 class="xtitle" id="xt-' + e.id + '" tabindex="-1">' + esc(e.title) + '</h2>' +
     (e.lead ? '<p class="lead">' + esc(e.lead) + '</p>' : '') +
     (e.ingredients || []).map(function (b) {
-      var cp = Object.assign({}, b, { groups: b.groups.map(function (g) { return Object.assign({}, g, { note: g.note ? sc(g.note) : g.note }); }) });
+      var cp = Object.assign({}, b, { groups: b.groups.map(function (g) { return Object.assign({}, g, { note: g.note }); }) });
       return ingredientBlock(cp).replace(/^<h3 class="sub">[^<]*<\/h3>/, b.heading === e.title.replace(/ \(.*\)$/, '') || e.title.indexOf(b.heading) === 0 ? '' : '$&');
     }).join('') +
     '<h3 class="sub">Preparación</h3>' + steps(e.prep) +
