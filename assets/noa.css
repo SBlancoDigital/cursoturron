@@ -1,0 +1,46 @@
+/* ============================================================
+   MODO NOA (se ve con el aspecto de Navidad)
+   ============================================================ */
+.top-tools{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;justify-content:flex-end}
+.noa-toggle[aria-checked="true"] .sw{background:#1f8a57}
+
+/* en las recetas: letra más grande y ingredientes que se marcan */
+body.noa #app .recipe{font-size:1.12rem}
+body.noa .ing li{position:relative;padding-left:2rem;cursor:pointer;min-height:44px}
+body.noa .ing li::before{content:"";position:absolute;left:0;top:.45rem;width:1.35rem;height:1.35rem;border:2px solid var(--gold);border-radius:50%;background:#fff;box-sizing:border-box}
+body.noa .ing li.done::before{background:#1f8a57 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/80% no-repeat;border-color:#1f8a57}
+body.noa .ing li.done .n,body.noa .ing li.done .q{text-decoration:line-through;opacity:.55}
+body.noa .ing li:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+
+/* la guía de un paso cada vez */
+.noa-hidden{display:none}
+.noa-guide{margin:1rem 0 1.4rem;padding:1.2rem 1.3rem 1.3rem;background:#fff;border:2px solid #c8202f;border-radius:16px;box-shadow:0 6px 22px rgba(200,32,47,.14);scroll-margin-top:1rem}
+.ng-top{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;flex-wrap:wrap}
+.ng-count{font:600 1.15rem var(--sans);color:#c8202f}
+.ng-sec{font-size:.85rem;color:var(--muted)}
+.ng-bar{height:10px;margin:.5rem 0 1rem;background:#f1e6d4;border-radius:999px;overflow:hidden}
+.ng-bar i{display:block;height:100%;background:linear-gradient(90deg,#1f8a57,#c8202f);border-radius:999px;transition:width .3s}
+.ng-title{margin:0 0 .6rem;font:600 1.5rem/1.25 var(--serif);color:var(--green)}
+.ng-text{font-size:1.28rem;line-height:1.65}
+.ng-text p{margin:.3rem 0}
+.ng-danger{display:inline-flex;align-items:center;gap:.45rem;margin:.2rem 0 .7rem;padding:.4rem .8rem;background:#fff3cd;color:#7a4a00;border:2px solid #f0b400;border-radius:10px;font:600 1rem var(--sans)}
+.ng-btns{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;margin-top:1.3rem}
+.ng-btns button{font:600 1.1rem var(--sans);min-height:52px;padding:.6rem 1.3rem;border-radius:999px;border:2px solid var(--gold);background:#fff;color:var(--green);cursor:pointer}
+.ng-btns .ng-next{background:#1f8a57;border-color:#1f8a57;color:#fff;flex:1 1 auto;max-width:100%}
+.ng-btns button:focus-visible{outline:3px solid #ffd45c;outline-offset:2px}
+.ng-end{text-align:center;padding:.6rem 0}
+.ng-big{font-size:2.6rem;margin:0}
+.ng-end h3{margin:.2rem 0;font:600 1.6rem var(--serif);color:var(--green)}
+.ng-end .ng-btns{justify-content:center}
+
+/* señal de peligro en los pasos (también en las ventanas de recetas extra) */
+.steps li.danger{background:#fffaf0;border-radius:10px}
+
+@media(max-width:700px){
+  .top-tools{gap:.35rem}
+  .noa-guide{padding:1rem .95rem 1.1rem}
+  .ng-btns .ng-next{flex-basis:100%}
+}
+@media print{.noa-guide{display:none}.noa-hidden{display:block}.ng-danger{border:1px solid #999;background:#fff}}
+.ng-title .mix-n,.ng-title .badge{margin-right:.5rem;vertical-align:middle}
+.foot-dev{margin-top:.5rem}

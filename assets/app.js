@@ -153,6 +153,7 @@ function setScale(r, v, focus) {
 }
 
 function bindRecipe(r) {
+  if (window.noaRecipe) window.noaRecipe(r);
   var b = APP.querySelector('[data-print]');
   if (b) b.addEventListener('click', function () { window.print(); });
   Array.prototype.forEach.call(APP.querySelectorAll('[data-scale]'), function (btn) {
@@ -286,6 +287,7 @@ function openDialog(r, ids, i, c) {
     var p = ev.target.closest ? ev.target.closest('[data-xprint]') : null;
     if (p) window.print();
   });
+  if (window.noaScan) window.noaScan(dlg);
   document.body.appendChild(dlg);
   var opener = document.activeElement;
   if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
@@ -380,3 +382,11 @@ function route() {
 
 window.addEventListener('hashchange', route);
 route();
+
+
+/* ---- Volver a pintar la vista actual (al cambiar de modo) sin perder el factor ---- */
+window.refreshView = function () {
+  var m = location.hash.match(/^#\/receta\/([\w-]+)/);
+  var r = m ? RECIPES.filter(function (x) { return x.id === m[1] && x.ready; })[0] : null;
+  if (r) setScale(r, SCALE); else route();
+};

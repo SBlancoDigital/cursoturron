@@ -10,6 +10,7 @@
 
   function saved() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
   function save(on) { try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {} }
+  function noaSaved() { try { return localStorage.getItem('turron-noa') === '1'; } catch (e) { return false; } }
 
   /* ---- cuenta atrás ---- */
   function plural(n) { return n + (n === 1 ? ' día' : ' días'); }
@@ -212,8 +213,9 @@
 
   /* ---- aplicar ---- */
   function apply(on) {
-    document.body.classList.toggle('navidad', on);
-    lights(on);
+    var eff = on || noaSaved();   /* el modo Noa se ve siempre con aspecto de Navidad */
+    document.body.classList.toggle('navidad', eff);
+    lights(eff);
     var all = document.querySelectorAll('[data-xmas]');
     for (var i = 0; i < all.length; i++) {
       if (all[i].getAttribute('role') === 'switch') all[i].setAttribute('aria-checked', String(on));
@@ -224,7 +226,7 @@
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target.closest('[data-xmas]') : null;
     if (!t) return;
-    var on = !document.body.classList.contains('navidad');
+    var on = !saved();
     save(on);
     apply(on);
     /* volver a pintar la página para que la nieve cambie, sin saltar de sitio */
@@ -238,5 +240,6 @@
     }
   });
 
+  window.xmasApply = function () { apply(saved()); };
   apply(saved());
 })();
