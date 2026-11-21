@@ -265,3 +265,5 @@ dialog.xdlg:not(.xtop)::backdrop{background:rgba(40,28,18,.2)}
 .xcard strong{font:500 1.05rem/1.25 var(--serif);color:var(--green)}
 .xcard span{font-size:.8rem;color:var(--muted)}
 .xcard:hover,.xcard:focus-visible{box-shadow:0 4px 14px rgba(0,0,0,.1);border-left-color:var(--gold-ink)}
+
+.scaler-c input::placeholder{color:#d9d4c7;opacity:1}

@@ -24,7 +24,7 @@ function lk(s) {
 
 /* ---- Ajuste de cantidades ---- */
 var SCALE = 1;
-var PRESETS = [[0.5, '½'], [1, '1'], [1.5, '1½'], [2, '2'], [3, '3']];
+var PRESETS = [[0.5, '½'], [1, '1'], [1.5, '1½']];
 
 function num(n, dec) {
   var f = Math.pow(10, dec);
@@ -137,8 +137,8 @@ function scalerView() {
     '<div class="scaler-b">' + PRESETS.map(function (p) {
       return '<button type="button" data-scale="' + p[0] + '" aria-pressed="' + (p[0] === SCALE) + '" aria-label="Multiplicar por ' + p[1] + '">×' + p[1] + '</button>';
     }).join('') + '</div>' +
-    '<label class="scaler-c">Otro factor ×<input type="text" inputmode="decimal" autocomplete="off" data-scale-input value="' +
-    (isPreset ? '' : num(SCALE, 2)) + '" placeholder="1,25" aria-label="Otro factor de multiplicación"></label>' +
+    '<label class="scaler-c"><input type="text" inputmode="decimal" autocomplete="off" data-scale-input value="' +
+    (isPreset ? '' : num(SCALE, 2)) + '" placeholder="0,25" aria-label="Otro factor de multiplicación"></label>' +
     note + '</div>';
 }
 
